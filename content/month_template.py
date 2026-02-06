@@ -7,6 +7,21 @@ STEPS TO CREATE A NEW EDITION:
 3. Place all images for that month in the directory
 4. Update all image paths below to: "{Month}_{Year}/your-image.jpg"
 5. Replace all content placeholders with your actual content
+
+SECTION ORDER IN THE NEWSLETTER:
+1. Masthead (auto-generated from month/year)
+2. Breaking News Ticker
+3. Featured Story (main highlight)
+4. AI Art Gallery (with model attribution + integrated Creative AI Spotlight)
+5. Top Stories
+6. Tools & Workflows
+7. Developer Tools Spotlight (supports images)
+8. Quote Block
+9. Research Papers
+10. Stats (By The Numbers)
+11. More Headlines (enhanced styling)
+12. Meme Corner (optional - for fun content)
+13. Footer (auto-generated)
 """
 
 EDITION = {
@@ -47,23 +62,54 @@ EDITION = {
     },
     
     # AI Art Gallery (3 images with captions)
+    # Include model and model_note to attribute the AI model used for generation
     "gallery": [
         {
             "image": "Month_Year/gallery-image-1.jpg",  # e.g., "February_2026/gallery-1.jpg"
             "title": "Image Title 1",
-            "description": "Brief description of the first image."
+            "description": "Brief description of the first image.",
+            "model": "Model Name",  # e.g., "Luma Labs Photon", "Midjourney v6", "DALL-E 3"
+            "model_note": "Released Month Year"  # Optional context about the model
         },
         {
             "image": "Month_Year/gallery-image-2.jpg",
             "title": "Image Title 2",
-            "description": "Brief description of the second image."
+            "description": "Brief description of the second image.",
+            "model": "Model Name",
+            "model_note": "Released Month Year"
         },
         {
             "image": "Month_Year/gallery-image-3.jpg",
             "title": "Image Title 3",
-            "description": "Brief description of the third image."
+            "description": "Brief description of the third image.",
+            "model": "Model Name",
+            "model_note": "Released Month Year"
         },
     ],
+    
+    # Gallery metadata (displayed as section subtitle + integrated Creative AI Spotlight)
+    "gallery_info": {
+        "model": "Primary Model Name",
+        "model_url": "https://model-website.com",
+        "note": "All images generated with [Model Name], released [Month Year]",
+        # Spotlight appears below the gallery images as part of the same section
+        "spotlight": {
+            "icon": "✨",
+            "title": "Model Name: Spotlight Title",
+            "meta": [
+                {"icon": "🎨", "text": "Generative AI"},
+                {"icon": "🖼️", "text": "Image Models"},
+                {"icon": "📅", "text": "Released Month Year"},
+            ],
+            "excerpt": """
+                Describe the AI model used for the gallery images. Explain what makes 
+                it special, its capabilities, and why it's relevant to this month.
+                <br><br>
+                Add more context about the model's features and significance.
+            """,
+            "link": {"name": "✨ Try This Model", "url": "https://model-website.com"}
+        }
+    },
     
     # Top Stories (left column: 1 story, right column: 2 stories)
     "top_stories": {
@@ -139,19 +185,23 @@ EDITION = {
         }
     },
     
-    # Developer Tools (2 cards side by side)
+    # Developer Tools (2-3 cards displayed in columns)
+    # Optional: include image field for visual screenshots/demos
     "developer_tools": [
         {
             "icon": "🔧",
             "title": "Developer Tool 1",
+            "image": "Month_Year/tool1-image.png",  # Optional - set to None if no image
             "description": """
                 Description of your first developer tool. Keep it concise but informative.
+                You can use <code>inline code</code> and <strong>bold</strong> text.
             """,
             "link": {"name": "🔗 View Tool", "url": "https://example.com"}
         },
         {
             "icon": "🛠️",
             "title": "Developer Tool 2",
+            "image": None,  # No image for this tool
             "description": """
                 Description of your second developer tool.
             """,
@@ -233,20 +283,19 @@ EDITION = {
         }
     ],
     
-    # Creative AI Spotlight (highlighted section at the end)
-    "creative_spotlight": {
-        "icon": "✨",
-        "title": "Creative AI Tool or Technique Spotlight",
-        "meta": [
-            {"icon": "🎨", "text": "Category"},
-            {"icon": "🖼️", "text": "Type"},
-        ],
-        "excerpt": """
-            Describe your creative AI spotlight here. This could be about 
-            image generation, video creation, music AI, or any creative tool.
-            <br><br>
-            This section gets special visual treatment at the end of the newsletter.
+    # Meme Corner (Optional - for fun/speculative content)
+    # Set to None or remove entirely if not needed for this edition
+    "meme_corner": {
+        "icon": "😂",
+        "title": "Your Meme Title Here",
+        "image": "Month_Year/meme-image.png",  # Optional meme image
+        "caption": "A witty caption about the meme",
+        "description": """
+            Description or context for the meme. This section is for 
+            fun, speculative, or not-yet-released content that readers 
+            might enjoy.
         """,
-        "link": {"name": "✨ Try This Tool", "url": "https://example.com"}
+        "joke": "The punchline or funny quote goes here.",
+        "disclaimer": "This is speculative/meme content - [Context about why]"
     }
 }

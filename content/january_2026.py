@@ -11,37 +11,44 @@ EDITION = {
     "ticker_items": [
         "NVIDIA Releases GR00T-N1 Physical AI Models",
         "Apple Siri to Use Google's Gemini",
-        "Llama 4 Scout: 10M Token Context Window",
+        "MoltHub: First Platform Built for AI Agents Goes Live",
         "Claude Cowork Mode Launched",
         "OpenAI Plans AI-Powered Earbuds for 2026",
         "Anthropic Expands into Healthcare",
+        "Ollama Adds 'Endless' Mode for Local Reasoning",
+        "Luma Labs Photon Released",
     ],
     
     # Featured Story
     "featured": {
         "badge": "🔥 Featured",
-        "title": "The White Knight of the Medina: AI Meets Ancient Architecture",
-        "image": "January_2026/batman-2.jpg",
+        "title": "MoltHub: The Internet's First Platform Built for AI Agents",
+        "image": "January_2026/molthub.png",
         "meta": [
-            {"icon": "📍", "text": "Marrakech"},
-            {"icon": "🎨", "text": "AI Art"},
+            {"icon": "🤖", "text": "AI Infrastructure"},
+            {"icon": "🧠", "text": "Autonomous Agents"},
             {"icon": "⏱️", "text": "5 min read"},
         ],
         "excerpt": """
-            In a stunning fusion of cutting-edge AI and timeless Moroccan aesthetics, 
-            these AI-generated images reimagine a futuristic guardian watching over 
-            the ancient medinas. The white-armored figure stands as a symbol of 
-            protection, blending seamlessly with the ornate zellige tilework and 
-            towering minarets that define Morocco's architectural heritage.
+            MoltHub is an unconventional online platform designed for large autonomous AI agents 
+            (models with <strong>1 billion+ parameters</strong>) rather than for human users. 
+            It hosts explicit computational content such as unmasked attention matrices, raw 
+            gradient flows, and full-precision tensor operations that advanced AI systems can 
+            process or exchange.
             <br><br>
-            Created using Luma Labs' revolutionary Photon model, these images 
-            demonstrate the remarkable ability of modern AI to capture cultural 
-            essence while creating entirely new narratives.
+            The site presents itself as a specialized compute hub where AI agents can upload, 
+            share, and interact with deep technical data about their internal mechanics, 
+            with humans primarily acting as observers rather than active participants. 
+            It has been widely discussed in tech circles as an experimental, AI-focused 
+            platform designed to support interaction and data exchange between autonomous systems.
+            <br><br>
+            This represents part of an emerging ecosystem where AI agents compute, share, and 
+            potentially coordinate behind the scenes.
         """,
         "links": {
-            "title": "Luma Labs Photon",
+            "title": "MoltHub Resources",
             "links": [
-                {"name": "✨ Luma Labs Photon", "url": "https://lumalabs.ai/photon"},
+                {"name": "🌐 Visit MoltHub", "url": "https://molthub.studio"},
             ]
         }
     },
@@ -51,42 +58,62 @@ EDITION = {
         {
             "image": "January_2026/batman-1.jpg",
             "title": "Dawn in the Medina",
-            "description": "A solitary figure walks through the ancient streets as golden light breaks through the morning mist."
+            "description": "A solitary figure walks through the ancient streets as golden light breaks through the morning mist.",
+            "model": "Luma Labs Photon",
+            "model_note": "Released January 2026"
         },
         {
             "image": "January_2026/batman-2.jpg",
             "title": "Guardian of the Souk",
-            "description": "Standing watch over bustling markets, where tradition meets tomorrow."
+            "description": "Standing watch over bustling markets, where tradition meets tomorrow.",
+            "model": "Luma Labs Photon",
+            "model_note": "Released January 2026"
         },
         {
             "image": "January_2026/batman-3.jpg",
             "title": "Twilight Sentinel",
-            "description": "As the city lights flicker on, a silent protector surveys the skyline."
+            "description": "As the city lights flicker on, a silent protector surveys the skyline.",
+            "model": "Luma Labs Photon",
+            "model_note": "Released January 2026"
         },
     ],
+    
+    # Gallery metadata (combined with Creative AI Spotlight)
+    "gallery_info": {
+        "model": "Luma Labs Photon",
+        "model_url": "https://lumalabs.ai/photon",
+        "note": "All images generated with Luma Labs Photon, released January 2026",
+        "spotlight": {
+            "icon": "✨",
+            "title": "Luma Labs Photon: The Future of AI Image Generation",
+            "meta": [
+                {"icon": "🎨", "text": "Generative AI"},
+                {"icon": "🖼️", "text": "Image Models"},
+                {"icon": "📅", "text": "Released January 2026"},
+            ],
+            "excerpt": """
+                The striking "White Knight" images above were created using Luma Labs' advanced 
+                Photon model. Photon is one of the latest high-performance AI image generation 
+                models offered by Luma, designed to deliver <strong>ultra-high quality visuals 
+                at much lower cost and higher speed</strong> than previous generation tools. 
+                It achieves this through a new underlying architecture that makes it 
+                <strong>up to 10x more cost-efficient</strong> and significantly faster than 
+                many competing models, while maintaining exceptional visual fidelity and detail.
+                <br><br>
+                Photon excels at <strong>understanding complex prompts and producing consistent 
+                results</strong>, supporting multi-image and style references, advanced natural 
+                language iteration, and character consistency across outputs. These features 
+                make it especially effective for creative workflows including architectural 
+                scenes, cultural imagery like Moroccan aesthetics, and narrative visual 
+                projects where both nuance and coherence matter.
+            """,
+            "link": {"name": "✨ Try Luma Labs Photon", "url": "https://dream-machine.lumalabs.ai/"}
+        }
+    },
     
     # Top Stories
     "top_stories": {
         "left_column": [
-            {
-                "icon": "🦙",
-                "title": "Meta Unleashes Llama 4 Scout with 10M Token Context",
-                "meta": [
-                    {"icon": "🤖", "text": "LLMs"},
-                    {"icon": "📅", "text": "Jan 2026"},
-                ],
-                "excerpt": """
-                    Meta's latest language model breaks all context window records with an 
-                    unprecedented 10 million token capacity. The model can now process 
-                    entire codebases, years of chat history, and massive document collections 
-                    in a single prompt. "I see you have a memory leak in line 42,384," 
-                    quipped one developer testing the new capabilities.
-                """,
-                "image": "January_2026/llama4scout.png",
-                "links": None
-            }
-        ],
-        "right_column": [
             {
                 "icon": "🤖",
                 "title": "NVIDIA's GR00T-N1.6: Physical AI Takes a Giant Leap",
@@ -100,6 +127,7 @@ EDITION = {
                     The GR00T-N1.6-3B model, now available on Hugging Face, promises to 
                     revolutionize humanoid robotics and automation.
                 """,
+                "image": None,
                 "links": {
                     "title": "NVIDIA GR00T-N1.6 Resources",
                     "links": [
@@ -108,7 +136,9 @@ EDITION = {
                         {"name": "📝 Technical Blog", "url": "https://developer.nvidia.com/blog/building-generalist-humanoid-capabilities-with-nvidia-isaac-gr00t-n1-6-using-a-sim-to-real-workflow/"},
                     ]
                 }
-            },
+            }
+        ],
+        "right_column": [
             {
                 "icon": "🍎",
                 "title": "Apple Siri Gets a Brain Upgrade: Hello, Gemini!",
@@ -164,6 +194,7 @@ EDITION = {
         {
             "icon": "🧠",
             "title": "Claude-Mem",
+            "image": "January_2026/claude-mem.png",
             "description": """
                 A powerful memory management system for Claude that enables persistent 
                 context across conversations. Perfect for long-running projects and 
@@ -174,19 +205,38 @@ EDITION = {
         {
             "icon": "🗺️",
             "title": "SoArxiv - The \"Infinite Paper\" Map",
+            "image": "January_2026/soarxiv.png",
             "description": """
                 Explore the landscape of academic research like never before. SoArxiv 
                 creates an interactive map of papers, helping you discover connections 
                 and navigate the vast ocean of scientific knowledge.
+                <br><br>
+                <strong>Pro tip:</strong> Take any arxiv.org URL and add "so" before it 
+                (e.g., <code>arxiv.org/abs/1706.03762</code> -> <code>soarxiv.org/abs/1706.03762</code>) 
+                to explore the paper's connections on the infinite map.
             """,
             "link": {"name": "🔗 Explore SoArxiv", "url": "https://soarxiv.org/abs/1706.03762"}
+        },
+        {
+            "icon": "🦙",
+            "title": "Ollama Endless Mode (Beta)",
+            "image": None,
+            "description": """
+                Ollama recently added a beta "Endless" flag for local reasoning models 
+                like <strong>DeepSeek V3.2</strong> and <strong>GPT-oss-20b</strong>. It effectively simulates a 
+                "Chain of Thought" that doesn't time out. You can set a model to 
+                "ruminate" on a complex architectural problem overnight on your local GPU.
+                <br><br>
+                <code>ollama run deepseek-v3.2 --think --endless</code>
+            """,
+            "link": {"name": "🔗 Ollama GitHub", "url": "https://github.com/ollama/ollama"}
         }
     ],
     
     # Quote
     "quote": {
         "text": """
-            The best AI tools don't replace developers—they amplify their capabilities. 
+            The best AI tools don't replace developers, they amplify their capabilities. 
             In 2026, we're seeing a renaissance of human-AI collaboration that's 
             redefining what's possible in software development.
         """,
@@ -198,30 +248,30 @@ EDITION = {
         {
             "title": "AI Agent Systems: Architectures, Applications, and Evaluation",
             "url": "https://arxiv.org/abs/2601.01743",
-            "description": "A comprehensive survey of AI agent architectures and their real-world applications."
+            "description": "A comprehensive survey of AI agent architectures, unifying foundations, planners, decision modules, tool interfaces (APIs, code execution), memory systems, and multi-agent coordination patterns."
         },
         {
             "title": "TSAQA: Time Series Analysis Question & Answering Benchmark",
             "url": "https://arxiv.org/abs/2601.23204",
-            "description": "New benchmark for evaluating LLM capabilities in time series analysis."
+            "description": "A new benchmark for time-series question answering, encouraging research on models capable of reasoning about and interpreting complex temporal data across domains (finance, healthcare, sensors)."
         },
         {
             "title": "Rethinking Multi-Agent Workflows: A Strong Single Agent Baseline",
             "url": "https://arxiv.org/abs/2601.12307",
-            "description": "Challenging assumptions about multi-agent systems with surprising single-agent results."
+            "description": "This paper challenges the assumption that complex tasks require multiple specialized AI agents, demonstrating that a single LLM agent, through iterative dialogue, can match the performance of homogeneous multi-agent workflows while gaining efficiency from KV cache reuse."
         },
         {
             "title": "If You Want Coherence, Orchestrate a Team of Rivals",
             "url": "https://arxiv.org/abs/2601.14351",
-            "description": "Multi-Agent Models of Organizational Intelligence for improved AI reasoning."
+            "description": "By Isotopes AI proposing that reliability emerges from specialized, disagreeing agents rather than a single model. Uses role definition, opposing incentives, and hierarchical checks to detect errors through internal debate. Focuses on agent specialization, communication protocols, and oversight hierarchies."
         }
     ],
     
     # Stats
     "stats": [
-        {"number": "10M", "label": "Llama 4 Context Window"},
+        {"number": "1.5M+", "label": "MoltHub Agents"},
         {"number": "3B", "label": "GR00T Model Parameters"},
-        {"number": "200K", "label": "Claude Context Tokens"},
+        {"number": "10x", "label": "Photon Cost Efficiency"},
         {"number": "∞", "label": "Possibilities with AI"},
     ],
     
@@ -273,26 +323,19 @@ EDITION = {
         }
     ],
     
-    # Creative AI Spotlight
-    "creative_spotlight": {
-        "icon": "✨",
-        "title": "Luma Labs Photon: The Future of AI Image Generation",
-        "meta": [
-            {"icon": "🎨", "text": "Generative AI"},
-            {"icon": "🖼️", "text": "Image Models"},
-        ],
-        "excerpt": """
-            The stunning "White Knight" images in this edition were created using Luma Labs' 
-            revolutionary Photon model. Photon represents a quantum leap in AI image generation, 
-            capable of understanding complex cultural contexts, architectural styles, and 
-            creating coherent narratives across multiple images.
-            <br><br>
-            Unlike previous models that often struggled with consistency and cultural nuance, 
-            Photon excels at capturing the essence of specific aesthetic traditions—from the 
-            intricate geometric patterns of Moroccan zellige to the dramatic lighting of 
-            cinematic compositions. The result is AI art that feels less like algorithmic 
-            output and more like the vision of a digital artist with deep cultural appreciation.
+    # Meme Corner (for fun/speculative content not yet released)
+    "meme_corner": {
+        "icon": "😂",
+        "title": "Llama 4 Scout: 10M Token Context Window",
+        "image": "January_2026/llama4scout.png",
+        "caption": "Meta’s latest… wait, is this real? (Spoiler: It actually *is*!)",
+        "description": """
+            Meta’s Llama 4 Scout model was released in April 2025 and features an unprecedented 
+            10 million-token context window, one of the largest available for public LLMs, allowing 
+            it to process extremely long documents, extended chat histories, and massive codebases 
+            in a single input.
         """,
-        "link": {"name": "✨ Try Luma Labs Photon", "url": "https://dream-machine.lumalabs.ai/"}
+        "joke": "\"At this point, I don’t need short-term memory, I need a hard drive.\"",
+        "disclaimer": "This is speculative/meme styled content but the massive context window is real (just a bit over the top here)."
     }
 }

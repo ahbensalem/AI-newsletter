@@ -524,6 +524,77 @@ st.markdown("""
         box-shadow: 0 10px 25px rgba(0, 212, 255, 0.15);
     }
     
+    /* Meme Corner card - playful styling */
+    .meme-card {
+        background: linear-gradient(135deg, rgba(155, 89, 182, 0.1) 0%, rgba(241, 196, 15, 0.1) 100%);
+        border: 2px dashed rgba(241, 196, 15, 0.5);
+        border-radius: 16px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .meme-card::before {
+        content: '🎭';
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        font-size: 80px;
+        opacity: 0.1;
+        transform: rotate(15deg);
+    }
+    
+    .meme-card:hover {
+        border-color: var(--accent-gold);
+        transform: scale(1.02);
+        box-shadow: 0 15px 35px rgba(241, 196, 15, 0.2);
+    }
+    
+    .meme-disclaimer {
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 0.7rem !important;
+        color: rgba(241, 196, 15, 0.8) !important;
+        background: rgba(241, 196, 15, 0.1);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        display: inline-block;
+        margin-top: 1rem;
+    }
+    
+    .meme-joke {
+        font-family: 'Source Serif 4', serif !important;
+        font-style: italic;
+        color: var(--text-secondary) !important;
+        font-size: 1.1rem;
+        margin: 1rem 0;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 8px;
+    }
+    
+    /* Headline card - enhanced styling */
+    .headline-card {
+        background: rgba(233, 69, 96, 0.08);
+        border: 1px solid rgba(233, 69, 96, 0.3);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .headline-card:hover {
+        border-color: var(--accent-magenta);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(233, 69, 96, 0.2);
+    }
+    
+    .headline-card .article-title {
+        font-size: 1.3rem !important;
+        margin-bottom: 0.8rem;
+    }
+    
     /* Responsive adjustments */
     @media (max-width: 768px) {
         .masthead-title {
@@ -571,13 +642,50 @@ st.markdown("""
     
     /* Popover styling */
     div[data-testid="stPopover"] {
-        background: #1a1a2e !important;
+        background: transparent !important;
     }
     
     div[data-testid="stPopover"] > div {
         background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
         border: 1px solid var(--accent-cyan) !important;
         border-radius: 12px !important;
+    }
+    
+    /* Link Button styling */
+    .stButton > button, 
+    a[data-testid="stLinkButton"],
+    button[data-testid="baseButton-secondary"],
+    button[kind="secondary"] {
+        background: rgba(0, 212, 255, 0.15) !important;
+        border: 2px solid var(--accent-cyan) !important;
+        color: var(--accent-cyan) !important;
+        font-family: 'JetBrains Mono', monospace !important;
+        font-weight: 500 !important;
+        padding: 0.6rem 1.5rem !important;
+        border-radius: 25px !important;
+        transition: transform 0.3s ease !important;
+        text-decoration: none !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+    }
+    
+    .stButton > button:hover, 
+    a[data-testid="stLinkButton"]:hover,
+    button[data-testid="baseButton-secondary"]:hover,
+    button[kind="secondary"]:hover {
+        background: rgba(0, 212, 255, 0.25) !important;
+        border-color: var(--accent-magenta) !important;
+        color: var(--accent-magenta) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: none !important;
+    }
+    
+    /* Specific styling for popover trigger buttons */
+    div[data-testid="stPopover"] > button,
+    div[data-testid="stPopover"] button[kind="secondary"] {
+        border-radius: 25px !important;
+        overflow: hidden !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -648,24 +756,6 @@ with col2:
     """, unsafe_allow_html=True)
     render_link_button(featured.get('links'), "View Resources")
 
-# ============== AI ART GALLERY ==============
-st.markdown("""
-<div class="section-header">
-    <span>AI Art Gallery</span>
-</div>
-""", unsafe_allow_html=True)
-
-cols = st.columns(3)
-for idx, gallery_item in enumerate(edition['gallery']):
-    with cols[idx]:
-        st.image(str(SCRIPT_DIR / gallery_item['image']), use_container_width=True)
-        st.markdown(f"""
-        <div class="article-card">
-            <h3 class="article-title">{gallery_item['title']}</h3>
-            <p class="article-excerpt">{clean_text(gallery_item['description'])}</p>
-        </div>
-        """, unsafe_allow_html=True)
-
 # ============== TOP STORIES ==============
 st.markdown("""
 <div class="section-header">
@@ -721,7 +811,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-col1, col2 = st.columns([1, 1.2])
+col1, col2 = st.columns([0.5, 1.2])
 
 with col1:
     st.image(str(SCRIPT_DIR / edition['tools_spotlight']['image']), use_container_width=True)
@@ -748,9 +838,21 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-cols = st.columns(2)
+num_tools = len(edition['developer_tools'])
+cols = st.columns(min(num_tools, 3))  # Support up to 3 columns
 for idx, tool in enumerate(edition['developer_tools']):
-    with cols[idx]:
+    with cols[idx % len(cols)]:
+        # Show image if available
+        if tool.get('image'):
+            try:
+                st.image(str(SCRIPT_DIR / tool['image']), use_container_width=True)
+            except:
+                st.markdown(f"""
+                <div style="background: rgba(0, 212, 255, 0.1); border: 1px dashed var(--accent-cyan); 
+                            border-radius: 8px; padding: 2rem; text-align: center; margin-bottom: 1rem;">
+                    <span style="color: var(--accent-cyan); font-size: 0.8rem;">📷 Image placeholder: {tool['image']}</span>
+                </div>
+                """, unsafe_allow_html=True)
         st.markdown(f"""
         <div class="tool-card">
             <h4 class="article-title">{tool['icon']} {tool['title']}</h4>
@@ -818,7 +920,7 @@ cols = st.columns(3)
 for idx, headline in enumerate(edition['more_headlines']):
     with cols[idx]:
         st.markdown(f"""
-        <div class="article-card">
+        <div class="headline-card">
             <h4 class="article-title">{headline['icon']} {headline['title']}</h4>
             <p class="article-excerpt">
                 {clean_text(headline['description'])}
@@ -827,27 +929,86 @@ for idx, headline in enumerate(edition['more_headlines']):
         """, unsafe_allow_html=True)
         render_link_button(headline.get('links'), "Read More")
 
-# ============== CREATIVE AI SPOTLIGHT ==============
-st.markdown("""
-<div class="section-header">
-    <span>Creative AI Spotlight</span>
-</div>
-""", unsafe_allow_html=True)
+# ============== AI ART GALLERY & CREATIVE AI SPOTLIGHT ==============
+gallery_info = edition.get('gallery_info', {})
+gallery_note = gallery_info.get('note', '')
+spotlight = gallery_info.get('spotlight', {})
 
-spotlight = edition['creative_spotlight']
 st.markdown(f"""
-<div class="article-card">
-    <h3 class="article-title">{spotlight['icon']} {spotlight['title']}</h3>
-    <div class="article-meta">
-        {render_meta_tags(spotlight['meta'])}
-    </div>
-    <p class="article-excerpt">
-        {clean_text(spotlight['excerpt'])}
-    </p>
+<div class="section-header">
+    <span>AI Art Gallery</span>
 </div>
 """, unsafe_allow_html=True)
 
-st.link_button(spotlight['link']['name'], spotlight['link']['url'], use_container_width=True)
+if gallery_note:
+    st.markdown(f"""
+    <p style="text-align: center; color: var(--accent-cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; margin-bottom: 1.5rem;">
+        {gallery_note}
+    </p>
+    """, unsafe_allow_html=True)
+
+cols = st.columns(3)
+for idx, gallery_item in enumerate(edition['gallery']):
+    with cols[idx]:
+        st.image(str(SCRIPT_DIR / gallery_item['image']), use_container_width=True)
+        model_info = ""
+        if gallery_item.get('model'):
+            model_info = f'<span style="color: var(--accent-cyan); font-size: 0.75rem; font-family: JetBrains Mono, monospace;">Generated with {gallery_item["model"]}</span>'
+        st.markdown(f"""
+        <div class="article-card">
+            <h3 class="article-title">{gallery_item['title']}</h3>
+            <p class="article-excerpt">{clean_text(gallery_item['description'])}</p>
+            {model_info}
+        </div>
+        """, unsafe_allow_html=True)
+
+# Integrated Creative AI Spotlight (part of gallery section)
+if spotlight:
+    st.markdown(f"""
+    <div class="article-card featured-card" style="margin-top: 2rem;">
+        <h3 class="article-title">{spotlight.get('icon', '✨')} {spotlight.get('title', '')}</h3>
+        <div class="article-meta">
+            {render_meta_tags(spotlight.get('meta', []))}
+        </div>
+        <p class="article-excerpt">
+            {clean_text(spotlight.get('excerpt', ''))}
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    if spotlight.get('link'):
+        st.link_button(spotlight['link']['name'], spotlight['link']['url'], use_container_width=True)
+
+# ============== MEME CORNER ==============
+if edition.get('meme_corner'):
+    st.markdown("""
+    <div class="section-header">
+        <span>Meme Corner</span>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    meme = edition['meme_corner']
+    col1, col2 = st.columns([1, 1.5])
+    
+    with col1:
+        if meme.get('image'):
+            st.image(str(SCRIPT_DIR / meme['image']), use_container_width=True)
+    
+    with col2:
+        st.markdown(f"""
+        <div class="meme-card">
+            <h3 class="article-title">{meme['icon']} {meme['title']}</h3>
+            <p style="color: var(--accent-gold); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;">
+                {meme.get('caption', '')}
+            </p>
+            <p class="article-excerpt">
+                {clean_text(meme.get('description', ''))}
+            </p>
+            <div class="meme-joke">
+                {meme.get('joke', '')}
+            </div>
+            <span class="meme-disclaimer">⚠️ {meme.get('disclaimer', 'For entertainment purposes only')}</span>
+        </div>
+        """, unsafe_allow_html=True)
 
 # ============== FOOTER ==============
 st.markdown(f"""
