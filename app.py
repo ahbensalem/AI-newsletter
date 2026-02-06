@@ -135,6 +135,22 @@ st.markdown("""
     span:not(.material-icons) {
         font-family: 'Source Serif 4', serif !important;
     }
+    
+    /* Force Material Icons font for ligatures - targets Streamlit's internal icon elements */
+    .material-icons,
+    span[class*="material-icons"],
+    div[data-testid="stPopover"] button span,
+    button[kind="secondary"] span {
+        font-family: "Material Icons" !important;
+        font-weight: normal !important;
+        font-style: normal !important;
+        font-feature-settings: "liga" !important;
+        -webkit-font-feature-settings: "liga" !important;
+        -moz-font-feature-settings: "liga" !important;
+        text-rendering: optimizeLegibility !important;
+        -webkit-font-smoothing: antialiased !important;
+    }
+    
     code {
         font-family: 'JetBrains Mono', monospace !important;
     }
