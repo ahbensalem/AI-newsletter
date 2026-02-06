@@ -44,14 +44,14 @@ def render_link_button(links_data, button_text="🔗 View Sources"):
     
     if len(links) == 1:
         # Single link - direct button
-        st.link_button(f"🔗 {links[0]['name']}", links[0]['url'], use_container_width=True)
+        st.link_button(f"🔗 {links[0]['name']}", links[0]['url'], width='stretch')
     elif len(links) > 1:
         # Multiple links - use popover
-        with st.popover(f"📚 {button_text} ({len(links)} sources)", use_container_width=True):
+        with st.popover(f"📚 {button_text} ({len(links)} sources)", width='stretch'):
             st.markdown(f"### {title}")
             st.markdown("---")
             for link in links:
-                st.link_button(link['name'], link['url'], use_container_width=True)
+                st.link_button(link['name'], link['url'], width='stretch')
 
 def render_meta_tags(meta_list):
     """Render meta tags for articles"""
@@ -759,7 +759,7 @@ st.markdown("""
 col1, col2 = st.columns([1.2, 1])
 
 with col1:
-    st.image(str(SCRIPT_DIR / edition['featured']['image']), use_container_width=True)
+    st.image(str(SCRIPT_DIR / edition['featured']['image']), width='stretch')
 
 with col2:
     featured = edition['featured']
@@ -802,7 +802,7 @@ with col1:
         """, unsafe_allow_html=True)
         
         if story.get('image'):
-            st.image(str(SCRIPT_DIR / story['image']), use_container_width=True)
+            st.image(str(SCRIPT_DIR / story['image']), width='stretch')
         
         if story.get('links'):
             render_link_button(story['links'], "View Resources")
@@ -835,7 +835,7 @@ st.markdown("""
 col1, col2 = st.columns([0.5, 1.2])
 
 with col1:
-    st.image(str(SCRIPT_DIR / edition['tools_spotlight']['image']), use_container_width=True)
+    st.image(str(SCRIPT_DIR / edition['tools_spotlight']['image']), width='stretch')
 
 with col2:
     tools = edition['tools_spotlight']
@@ -866,7 +866,7 @@ for idx, tool in enumerate(edition['developer_tools']):
         # Show image if available
         if tool.get('image'):
             try:
-                st.image(str(SCRIPT_DIR / tool['image']), use_container_width=True)
+                st.image(str(SCRIPT_DIR / tool['image']), width='stretch')
             except:
                 st.markdown(f"""
                 <div style="background: rgba(0, 212, 255, 0.1); border: 1px dashed var(--accent-cyan); 
@@ -882,7 +882,7 @@ for idx, tool in enumerate(edition['developer_tools']):
             </p>
         </div>
         """, unsafe_allow_html=True)
-        st.link_button(tool['link']['name'], tool['link']['url'], use_container_width=True)
+        st.link_button(tool['link']['name'], tool['link']['url'], width='stretch')
 
 # ============== QUOTE BLOCK ==============
 quote = edition['quote']
@@ -911,7 +911,7 @@ for idx, paper in enumerate(edition['papers']):
             <p class="article-excerpt" style="font-size: 0.9rem; margin-bottom: 0.5rem;">{clean_text(paper['description'])}</p>
         </div>
         """, unsafe_allow_html=True)
-        st.link_button(f"📖 Read Paper", paper['url'], use_container_width=True)
+        st.link_button(f"📖 Read Paper", paper['url'], width='stretch')
 
 # ============== STATS SECTION ==============
 st.markdown("""
@@ -971,7 +971,7 @@ if gallery_note:
 cols = st.columns(3)
 for idx, gallery_item in enumerate(edition['gallery']):
     with cols[idx]:
-        st.image(str(SCRIPT_DIR / gallery_item['image']), use_container_width=True)
+        st.image(str(SCRIPT_DIR / gallery_item['image']), width='stretch')
         model_info = ""
         if gallery_item.get('model'):
             model_info = f'<span style="color: var(--accent-cyan); font-size: 0.75rem; font-family: JetBrains Mono, monospace;">Generated with {gallery_item["model"]}</span>'
@@ -997,7 +997,7 @@ if spotlight:
     </div>
     """, unsafe_allow_html=True)
     if spotlight.get('link'):
-        st.link_button(spotlight['link']['name'], spotlight['link']['url'], use_container_width=True)
+        st.link_button(spotlight['link']['name'], spotlight['link']['url'], width='stretch')
 
 # ============== MEME CORNER ==============
 if edition.get('meme_corner'):
@@ -1012,7 +1012,7 @@ if edition.get('meme_corner'):
     
     with col1:
         if meme.get('image'):
-            st.image(str(SCRIPT_DIR / meme['image']), use_container_width=True)
+            st.image(str(SCRIPT_DIR / meme['image']), width='stretch')
     
     with col2:
         st.markdown(f"""
