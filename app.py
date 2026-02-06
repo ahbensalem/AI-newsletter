@@ -127,10 +127,14 @@ st.markdown("""
         color: var(--text-primary) !important;
     }
     
-    p, span, div {
+    p, div {
+    font-family: 'Source Serif 4', serif !important;
+    }
+
+    /* DO NOT override Material Icons */
+    span:not(.material-icons) {
         font-family: 'Source Serif 4', serif !important;
     }
-    
     code {
         font-family: 'JetBrains Mono', monospace !important;
     }
