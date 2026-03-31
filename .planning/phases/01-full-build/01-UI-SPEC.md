@@ -57,22 +57,18 @@ Source: CONTEXT.md D-11 (100px section padding, 64px gaps, 24px card radius) + R
 
 | Role | Size | Weight | Line Height | Usage |
 |------|------|--------|-------------|-------|
-| Body | 18px | 400 | 1.7 | Article body paragraphs via `prose-lg` (REQUIREMENTS.md FOUND-03 mandates 18px+) |
-| Label | 13px | 600 | 1.4 | Category pills, nav links, meta data (date, read time), TOC entries, "Read Now" CTAs |
-| Heading | 20–24px | 800 | 1.25 | Section headers, card titles, TOC section group labels |
-| Display | 36–44px | 800 | 1.1 | Hero article title (responsive: 36px mobile, 44px desktop) |
+| Label | 13px | 800 | 1.4 | Category pills, nav links, meta data (date, read time), "Read Now" CTAs, navbar brand "The Gradient" |
+| Body | 18px | 400 | 1.7 | Article body paragraphs via `prose-lg` (REQUIREMENTS.md FOUND-03 mandates 18px+), card excerpts, TOC entries |
+| Heading | 24px | 800 | 1.25 | Section headers, card titles, edition page article section headings (h2) |
+| Display | 40px | 800 | 1.1 | Hero article title (responsive: 40px desktop, 28px mobile via `text-[28px] lg:text-[40px]`) |
 
-Additional sizes in use (declared to prevent drift):
-- 11px weight 600: Category pill text + dot labels — same as existing `CategoryPill` pattern
-- 15px weight 700: Article card title (line-clamped to 2 lines)
-- 17px weight 800: Navbar brand name "The Gradient"
-- 28–32px weight 800: Edition page article section headings
+Two weights only: 400 (body, excerpts, TOC inactive entries) and 800 (headings, labels, CTAs, brand name). No intermediate weights.
 
 Font stack: `"Manrope Variable", ui-sans-serif, system-ui, sans-serif`
 
 Tailwind v4 `@theme` token: `--font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;`
 
-Source: CONTEXT.md (Manrope confirmed), REQUIREMENTS.md FOUND-03, existing `HomePage.jsx` size patterns preserved where consistent with new design.
+Source: CONTEXT.md (Manrope confirmed), REQUIREMENTS.md FOUND-03, existing `HomePage.jsx` size patterns consolidated to 4-role system.
 
 ---
 
@@ -111,7 +107,7 @@ Category color mapping (replaces existing dark-theme accent/blue/green/purple/pi
 | Industry | `#059669` (emerald-600) + soft | `rgba(5,150,105,0.10)` | `#059669` |
 
 Accent `#EA580C` reserved for:
-- Primary CTA button background ("Subscribe")
+- Primary CTA button background ("Subscribe Free")
 - "Read Now" link text + chevron icon
 - "View more" category section link text + arrow icon
 - Active TOC entry left border indicator
@@ -136,7 +132,7 @@ All components are hand-rolled. No component library. Defined as file-private su
 |-----------|------|-------|-------|
 | `Navbar` | `Navbar.jsx` | none | Frosted glass sticky; `backdrop-blur-md bg-nav-bg border-b border-border-subtle sticky top-0 z-50`; height 64px; links: Home, Archive + category anchors |
 | `Footer` | `Footer.jsx` | none | Dark bg (`bg-footer-bg`), newsletter name, nav links, social icon placeholders |
-| `CategoryPill` | `CategoryPill.jsx` | `categoryId` | 11px/600 text, color dot, rounded-full; source: `getCatColor()` pattern from existing code |
+| `CategoryPill` | `CategoryPill.jsx` | `categoryId` | 13px/800 text, color dot, rounded-full; source: `getCatColor()` pattern from existing code |
 | `ArticleCard` | `ArticleCard.jsx` | `article` | 24px radius, card border, 180px image, hover lift `hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300` |
 | `EditionCard` | `EditionCard.jsx` | `edition` | Archive grid card — edition metadata (month, year, issue number, article count), card border, hover lift |
 
@@ -155,7 +151,7 @@ All components are hand-rolled. No component library. Defined as file-private su
 
 ### EditionPage Sub-Sections
 - `ArticleSection` — One per article: title (h2), CategoryPill, read time, image, body paragraphs, source links
-- `SidebarTOC` — Sticky right sidebar; entry per article grouped with category dot; active entry: left border `border-l-2 border-accent text-accent font-semibold`; inactive: `text-text-3 hover:text-text`; scroll-spy via `react-intersection-observer` with `rootMargin: "-80px 0px -85% 0px"` (STATE.md note)
+- `SidebarTOC` — Sticky right sidebar; entry per article grouped with category dot; active entry: left border `border-l-2 border-accent text-accent font-bold`; inactive: `text-text-3 hover:text-text`; scroll-spy via `react-intersection-observer` with `rootMargin: "-80px 0px -85% 0px"` (STATE.md note)
 
 ---
 
@@ -197,7 +193,7 @@ All components are hand-rolled. No component library. Defined as file-private su
 
 | Element | Copy |
 |---------|------|
-| Primary CTA | "Subscribe" (newsletter signup button) |
+| Primary CTA | "Subscribe Free" (newsletter signup button) |
 | Read article CTA | "Read Now" (card footer link with ChevronRight icon) |
 | View more CTA | "View all articles" (category section link with ArrowRight icon) |
 | Empty state — no articles | "No articles yet" / "Check back next month for the latest edition." |
