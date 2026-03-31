@@ -30,7 +30,7 @@ Source: RESEARCH.md (STACK.md) + CONTEXT.md (D-11). shadcn explicitly excluded �
 
 ## Spacing Scale
 
-Declared values (multiples of 4 only):
+Declared values (multiples of 4 only, from standard set {4, 8, 16, 24, 32, 48, 64}):
 
 | Token | Value | Usage |
 |-------|-------|-------|
@@ -41,9 +41,9 @@ Declared values (multiples of 4 only):
 | xl | 32px | Gap between cards in a row, form element padding |
 | 2xl | 48px | TOC entry group spacing, sidebar internal padding |
 | 3xl | 64px | Section title-to-content gap |
-| 4xl | 100px | Section vertical padding (top + bottom) |
 
 Exceptions:
+- Section vertical padding (top + bottom): 100px — CONTEXT.md D-11 readx patterns ("100px section padding")
 - Navbar height: 64px (h-16) — matches existing pattern from `HomePage.jsx` line 38
 - TOC scroll-margin-top: 80px — compensates for sticky navbar height (RESEARCH.md, PITFALLS.md)
 - Card image height — home page hero: min 400px mobile / 500px desktop; secondary cards: 260px mobile / 300px desktop; article grid cards: 180px (CONTEXT.md D-04, existing `HomePage.jsx`)
