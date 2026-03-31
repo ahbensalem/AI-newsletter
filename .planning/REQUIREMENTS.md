@@ -9,10 +9,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Foundation
 
-- [ ] **FOUND-01**: Multi-edition data model supports multiple months with per-edition files, easy to add new editions
-- [ ] **FOUND-02**: Semantic color token system in Tailwind v4 `@theme` with custom AI-tech palette (NOT purple/blue)
-- [ ] **FOUND-03**: Professional typography with Manrope font, clear heading hierarchy, readable body text (18px+)
-- [ ] **FOUND-04**: Framer Motion moved from devDependencies to dependencies
+- [x] **FOUND-01**: Multi-edition data model supports multiple months with per-edition files, easy to add new editions
+- [x] **FOUND-02**: Semantic color token system in Tailwind v4 `@theme` with custom AI-tech palette (NOT purple/blue)
+- [x] **FOUND-03**: Professional typography with Manrope font, clear heading hierarchy, readable body text (18px+)
+- [x] **FOUND-04**: Framer Motion moved from devDependencies to dependencies
 
 ### Layout & Design
 
@@ -76,10 +76,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | Phase 1 | Pending |
-| FOUND-02 | Phase 1 | Pending |
-| FOUND-03 | Phase 1 | Pending |
-| FOUND-04 | Phase 1 | Pending |
+| FOUND-01 | Phase 1 | Complete |
+| FOUND-02 | Phase 1 | Complete |
+| FOUND-03 | Phase 1 | Complete |
+| FOUND-04 | Phase 1 | Complete |
 | LAYOUT-01 | Phase 1 | Pending |
 | LAYOUT-02 | Phase 1 | Pending |
 | LAYOUT-03 | Phase 1 | Pending |
