@@ -85,6 +85,7 @@ Plan: 4 of 6 (Plans 01, 02, and 03 complete)
 - **Sticky TOC**: Parent grid must have NO `overflow: hidden` — use CSS Grid with `align-self: start` on the sidebar grid cell
 - **scroll-spy rootMargin**: Use `rootMargin: "-80px 0px -85% 0px"` — 80px offset for navbar height
 - **Firefox**: Test `backdrop-filter` + `position: sticky` combo; add `@supports` fallback
+- **data.js bridge**: `src/data.js` re-exports from `src/data/index.js` — Vite resolves `../data` to file not directory, so bridge is essential for all page imports
 
 ### Todos
 
