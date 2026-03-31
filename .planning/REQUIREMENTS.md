@@ -16,11 +16,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Layout & Design
 
-- [ ] **LAYOUT-01**: Frosted glass sticky navbar with blur effect and smooth navigation links
+- [x] **LAYOUT-01**: Frosted glass sticky navbar with blur effect and smooth navigation links
 - [ ] **LAYOUT-02**: Modern editorial home page with hero section and featured article highlight
-- [ ] **LAYOUT-03**: Card-based article presentation with rounded corners (24px), borders, and content padding
-- [ ] **LAYOUT-04**: Card hover lift animations (translateY + shadow on hover)
-- [ ] **LAYOUT-05**: Dark branded footer with newsletter info, navigation links, and social icons
+- [x] **LAYOUT-03**: Card-based article presentation with rounded corners (24px), borders, and content padding
+- [x] **LAYOUT-04**: Card hover lift animations (translateY + shadow on hover)
+- [x] **LAYOUT-05**: Dark branded footer with newsletter info, navigation links, and social icons
 - [ ] **LAYOUT-06**: Alternating section backgrounds (white / light grey) for visual rhythm
 - [ ] **LAYOUT-07**: Generous whitespace — 100px section padding, 64px title gaps, 40px card gaps
 - [ ] **LAYOUT-08**: Scroll-reveal animations on cards and sections using Framer Motion
@@ -32,7 +32,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **PAGE-03**: Sticky sidebar table of contents with scroll-spy highlighting current article
 - [ ] **PAGE-04**: Clickable TOC entries scroll smoothly to corresponding article sections
 - [ ] **PAGE-05**: Archive page lists all monthly editions in a card grid with edition metadata
-- [ ] **PAGE-06**: Category badges with color coding displayed on article cards and within editions
+- [x] **PAGE-06**: Category badges with color coding displayed on article cards and within editions
 
 ### Responsive Design
 
@@ -42,9 +42,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Content Details
 
-- [ ] **CONT-01**: Reading time displayed on article cards
+- [x] **CONT-01**: Reading time displayed on article cards
 - [ ] **CONT-02**: Article source links displayed within article sections
-- [ ] **CONT-03**: Edition metadata (month, year, issue number, article count) displayed on edition and archive cards
+- [x] **CONT-03**: Edition metadata (month, year, issue number, article count) displayed on edition and archive cards
 
 ## v2 Requirements
 
@@ -80,11 +80,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FOUND-02 | Phase 1 | Complete |
 | FOUND-03 | Phase 1 | Complete |
 | FOUND-04 | Phase 1 | Complete |
-| LAYOUT-01 | Phase 1 | Pending |
+| LAYOUT-01 | Phase 1 | Complete |
 | LAYOUT-02 | Phase 1 | Pending |
-| LAYOUT-03 | Phase 1 | Pending |
-| LAYOUT-04 | Phase 1 | Pending |
-| LAYOUT-05 | Phase 1 | Pending |
+| LAYOUT-03 | Phase 1 | Complete |
+| LAYOUT-04 | Phase 1 | Complete |
+| LAYOUT-05 | Phase 1 | Complete |
 | LAYOUT-06 | Phase 1 | Pending |
 | LAYOUT-07 | Phase 1 | Pending |
 | LAYOUT-08 | Phase 1 | Pending |
@@ -93,13 +93,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PAGE-03 | Phase 1 | Pending |
 | PAGE-04 | Phase 1 | Pending |
 | PAGE-05 | Phase 1 | Pending |
-| PAGE-06 | Phase 1 | Pending |
+| PAGE-06 | Phase 1 | Complete |
 | RESP-01 | Phase 1 | Pending |
 | RESP-02 | Phase 2 | Pending |
 | RESP-03 | Phase 2 | Pending |
-| CONT-01 | Phase 1 | Pending |
+| CONT-01 | Phase 1 | Complete |
 | CONT-02 | Phase 1 | Pending |
-| CONT-03 | Phase 1 | Pending |
+| CONT-03 | Phase 1 | Complete |
 
 **Coverage:**
 - v1 requirements: 24 total

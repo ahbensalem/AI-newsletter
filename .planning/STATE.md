@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-31T17:24:52.363Z"
+last_updated: "2026-03-31T17:29:55.446Z"
 progress:
   total_phases: 2
   completed_phases: 0
   total_plans: 6
-  completed_plans: 1
-  percent: 17
+  completed_plans: 2
+  percent: 33
 ---
 
 # Project State: The Gradient — Newsletter Redesign
@@ -30,14 +30,14 @@ progress:
 ## Current Position
 
 Phase: 01 (full-build) — EXECUTING
-Plan: 2 of 6 (Plan 01 complete)
+Plan: 3 of 6 (Plans 01 and 02 complete)
 **Phase:** 1 — Full Build
-**Plan:** Plan 01 complete — moving to Plan 02
+**Plan:** Plan 02 complete — moving to Plan 03
 **Status:** Executing
 
 **Progress:**
 
-[██░░░░░░░░] 17% (1/6 plans complete)
+[███░░░░░░░] 33%
 
 ---
 
@@ -48,12 +48,13 @@ Plan: 2 of 6 (Plan 01 complete)
 | Phases total | 2 |
 | Phases complete | 0 |
 | Plans total | 6 |
-| Plans complete | 1 |
+| Plans complete | 2 |
 | Requirements mapped | 24/24 |
 
 | Plan | Duration | Tasks | Files |
 |------|----------|-------|-------|
 | Phase 01-full-build P01 | 15min | 3 tasks | 10 files |
+| Phase 01-full-build P02 | 10min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -69,6 +70,8 @@ Plan: 2 of 6 (Plan 01 complete)
 | Imperative `scrollIntoView` for TOC clicks (not hash URLs) | Avoids React Router scroll restoration conflicts | Active |
 | Per-edition JS module pattern (`src/data/editions/`) | Prerequisite for archive, routing, and all multi-edition features | Active |
 | `tailwind-merge` v3 required | Tailwind v4 compatibility — v2 silently breaks | Active |
+| ArticleCard optional `editionSlug` prop | Flexible card linking — pages pass correct slug, falls back to / | Active |
+| Placeholder pages for EditionPage and ArchivePage | Allow App.jsx import resolution before full implementation in later plans | Active |
 
 ### Critical Implementation Notes
 

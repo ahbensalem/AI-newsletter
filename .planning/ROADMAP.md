@@ -26,11 +26,11 @@
   3. A reader can open the archive page and see all past editions in a card grid with edition metadata (month, year, issue number, article count)
   4. The navbar is frosted glass, sticky at the top, and all navigation links work; the footer is dark with newsletter branding
   5. The layout adapts correctly across mobile, tablet, and desktop viewports with no broken layouts
-**Plans:** 1/6 plans executed
+**Plans:** 2/6 plans executed
 
 Plans:
 - [x] 01-01-PLAN.md — Foundation: packages, data migration, CSS tokens, utilities
-- [ ] 01-02-PLAN.md — Shared components: Navbar, Footer, CategoryPill, ArticleCard, EditionCard, routing
+- [x] 01-02-PLAN.md — Shared components: Navbar, Footer, CategoryPill, ArticleCard, EditionCard, routing
 - [ ] 01-03-PLAN.md — Home Page: hero section, article grid, newsletter signup
 - [ ] 01-04-PLAN.md — Edition Page: two-column layout, sticky TOC, scroll-spy, article sections
 - [ ] 01-05-PLAN.md — Archive Page: edition card grid
@@ -56,5 +56,5 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Full Build | 1/6 | In Progress|  |
+| 1. Full Build | 2/6 | In Progress|  |
 | 2. Responsive Polish | 0/0 | Not started | - |
