@@ -17,17 +17,17 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Layout & Design
 
 - [x] **LAYOUT-01**: Frosted glass sticky navbar with blur effect and smooth navigation links
-- [ ] **LAYOUT-02**: Modern editorial home page with hero section and featured article highlight
+- [x] **LAYOUT-02**: Modern editorial home page with hero section and featured article highlight
 - [x] **LAYOUT-03**: Card-based article presentation with rounded corners (24px), borders, and content padding
 - [x] **LAYOUT-04**: Card hover lift animations (translateY + shadow on hover)
 - [x] **LAYOUT-05**: Dark branded footer with newsletter info, navigation links, and social icons
-- [ ] **LAYOUT-06**: Alternating section backgrounds (white / light grey) for visual rhythm
-- [ ] **LAYOUT-07**: Generous whitespace — 100px section padding, 64px title gaps, 40px card gaps
-- [ ] **LAYOUT-08**: Scroll-reveal animations on cards and sections using Framer Motion
+- [x] **LAYOUT-06**: Alternating section backgrounds (white / light grey) for visual rhythm
+- [x] **LAYOUT-07**: Generous whitespace — 100px section padding, 64px title gaps, 40px card gaps
+- [x] **LAYOUT-08**: Scroll-reveal animations on cards and sections using Framer Motion
 
 ### Content Pages
 
-- [ ] **PAGE-01**: Home page displays featured articles, recent edition highlights, and newsletter signup placeholder
+- [x] **PAGE-01**: Home page displays featured articles, recent edition highlights, and newsletter signup placeholder
 - [x] **PAGE-02**: Edition page shows all articles for a month with two-column layout (content + sidebar)
 - [x] **PAGE-03**: Sticky sidebar table of contents with scroll-spy highlighting current article
 - [x] **PAGE-04**: Clickable TOC entries scroll smoothly to corresponding article sections
@@ -36,7 +36,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Responsive Design
 
-- [ ] **RESP-01**: Responsive layout adapts cleanly to mobile, tablet, and desktop viewports
+- [x] **RESP-01**: Responsive layout adapts cleanly to mobile, tablet, and desktop viewports
 - [ ] **RESP-02**: Mobile navigation with hamburger menu collapse
 - [ ] **RESP-03**: Mobile edition page hides or collapses sidebar TOC appropriately
 
@@ -81,20 +81,20 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FOUND-03 | Phase 1 | Complete |
 | FOUND-04 | Phase 1 | Complete |
 | LAYOUT-01 | Phase 1 | Complete |
-| LAYOUT-02 | Phase 1 | Pending |
+| LAYOUT-02 | Phase 1 | Complete |
 | LAYOUT-03 | Phase 1 | Complete |
 | LAYOUT-04 | Phase 1 | Complete |
 | LAYOUT-05 | Phase 1 | Complete |
-| LAYOUT-06 | Phase 1 | Pending |
-| LAYOUT-07 | Phase 1 | Pending |
-| LAYOUT-08 | Phase 1 | Pending |
-| PAGE-01 | Phase 1 | Pending |
+| LAYOUT-06 | Phase 1 | Complete |
+| LAYOUT-07 | Phase 1 | Complete |
+| LAYOUT-08 | Phase 1 | Complete |
+| PAGE-01 | Phase 1 | Complete |
 | PAGE-02 | Phase 1 | Complete |
 | PAGE-03 | Phase 1 | Complete |
 | PAGE-04 | Phase 1 | Complete |
 | PAGE-05 | Phase 1 | Complete |
 | PAGE-06 | Phase 1 | Complete |
-| RESP-01 | Phase 1 | Pending |
+| RESP-01 | Phase 1 | Complete |
 | RESP-02 | Phase 2 | Pending |
 | RESP-03 | Phase 2 | Pending |
 | CONT-01 | Phase 1 | Complete |
