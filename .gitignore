@@ -16,6 +16,9 @@ eggs/
 .eggs/
 lib/
 lib64/
+# Allow React app src/lib (overrides Python lib/ rule above)
+!react-newsletter/src/lib/
+!react-newsletter/src/lib/**
 parts/
 sdist/
 var/
