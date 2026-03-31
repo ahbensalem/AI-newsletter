@@ -1,0 +1,62 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  /* Page backgrounds */
+  --color-page-bg: #FAFAF9;
+  --color-section-alt: #FFFFFF;
+  --color-card-bg: #FFFFFF;
+  --color-sidebar-bg: #F5F4F2;
+  --color-nav-bg: rgba(255,255,255,0.75);
+  --color-footer-bg: #1C1917;
+  --color-footer-text: #A8A29E;
+
+  /* Borders */
+  --color-border: #D6D3D1;
+  --color-border-subtle: #E7E5E4;
+
+  /* Text */
+  --color-text: #1C1917;
+  --color-text-2: #57534E;
+  --color-text-3: #A8A29E;
+
+  /* Accent (orange) */
+  --color-accent: #EA580C;
+  --color-accent-soft: rgba(234,88,12,0.10);
+
+  /* Secondary accent (sky) */
+  --color-sky: #0EA5E9;
+  --color-sky-soft: rgba(14,165,233,0.10);
+
+  /* Category colors */
+  --color-violet: #7C3AED;
+  --color-violet-soft: rgba(124,58,237,0.10);
+  --color-pink: #DB2777;
+  --color-pink-soft: rgba(219,39,119,0.10);
+  --color-emerald: #059669;
+  --color-emerald-soft: rgba(5,150,105,0.10);
+
+  /* Typography */
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--color-page-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* TOC scroll offset compensation for sticky navbar */
+section[id] { scroll-margin-top: 80px; }
+
+/* Text selection */
+::selection { background: var(--color-accent); color: white; }
+
+/* Firefox frosted glass fallback */
+@supports not (backdrop-filter: blur(1px)) {
+  .navbar-frosted { background: rgba(255,255,255,0.95) !important; }
+}
