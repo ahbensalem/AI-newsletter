@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-31T17:29:55.446Z"
+last_updated: "2026-03-31T17:35:36.256Z"
 progress:
   total_phases: 2
   completed_phases: 0
   total_plans: 6
-  completed_plans: 2
-  percent: 33
+  completed_plans: 5
+  percent: 83
 ---
 
 # Project State: The Gradient — Newsletter Redesign
@@ -30,14 +30,14 @@ progress:
 ## Current Position
 
 Phase: 01 (full-build) — EXECUTING
-Plan: 3 of 6 (Plans 01 and 02 complete)
+Plan: 4 of 6 (Plans 01, 02, and 03 complete)
 **Phase:** 1 — Full Build
-**Plan:** Plan 02 complete — moving to Plan 03
+**Plan:** Plan 03 complete — moving to Plan 04
 **Status:** Executing
 
 **Progress:**
 
-[███░░░░░░░] 33%
+[████████░░] 83%
 
 ---
 
@@ -55,6 +55,9 @@ Plan: 3 of 6 (Plans 01 and 02 complete)
 |------|----------|-------|-------|
 | Phase 01-full-build P01 | 15min | 3 tasks | 10 files |
 | Phase 01-full-build P02 | 10min | 2 tasks | 8 files |
+| Phase 01-full-build P04 | 15min | 2 tasks | 4 files |
+| Phase 01-full-build P03 | 18min | 1 tasks | 2 files |
+| Phase 01-full-build P05 | 8min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -72,6 +75,8 @@ Plan: 3 of 6 (Plans 01 and 02 complete)
 | `tailwind-merge` v3 required | Tailwind v4 compatibility — v2 silently breaks | Active |
 | ArticleCard optional `editionSlug` prop | Flexible card linking — pages pass correct slug, falls back to / | Active |
 | Placeholder pages for EditionPage and ArchivePage | Allow App.jsx import resolution before full implementation in later plans | Active |
+| Legacy data.js acts as re-export bridge | Preserves ArticlePage backward compat while exposing new latestEdition/allEditions exports | Active |
+| Featured hero card links to /edition/:slug | Edition page is the new canonical reading experience, not /article/:id | Active |
 
 ### Critical Implementation Notes
 

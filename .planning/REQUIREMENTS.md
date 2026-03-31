@@ -28,10 +28,10 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Content Pages
 
 - [ ] **PAGE-01**: Home page displays featured articles, recent edition highlights, and newsletter signup placeholder
-- [ ] **PAGE-02**: Edition page shows all articles for a month with two-column layout (content + sidebar)
-- [ ] **PAGE-03**: Sticky sidebar table of contents with scroll-spy highlighting current article
-- [ ] **PAGE-04**: Clickable TOC entries scroll smoothly to corresponding article sections
-- [ ] **PAGE-05**: Archive page lists all monthly editions in a card grid with edition metadata
+- [x] **PAGE-02**: Edition page shows all articles for a month with two-column layout (content + sidebar)
+- [x] **PAGE-03**: Sticky sidebar table of contents with scroll-spy highlighting current article
+- [x] **PAGE-04**: Clickable TOC entries scroll smoothly to corresponding article sections
+- [x] **PAGE-05**: Archive page lists all monthly editions in a card grid with edition metadata
 - [x] **PAGE-06**: Category badges with color coding displayed on article cards and within editions
 
 ### Responsive Design
@@ -43,7 +43,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Content Details
 
 - [x] **CONT-01**: Reading time displayed on article cards
-- [ ] **CONT-02**: Article source links displayed within article sections
+- [x] **CONT-02**: Article source links displayed within article sections
 - [x] **CONT-03**: Edition metadata (month, year, issue number, article count) displayed on edition and archive cards
 
 ## v2 Requirements
@@ -89,16 +89,16 @@ Which phases cover which requirements. Updated during roadmap creation.
 | LAYOUT-07 | Phase 1 | Pending |
 | LAYOUT-08 | Phase 1 | Pending |
 | PAGE-01 | Phase 1 | Pending |
-| PAGE-02 | Phase 1 | Pending |
-| PAGE-03 | Phase 1 | Pending |
-| PAGE-04 | Phase 1 | Pending |
-| PAGE-05 | Phase 1 | Pending |
+| PAGE-02 | Phase 1 | Complete |
+| PAGE-03 | Phase 1 | Complete |
+| PAGE-04 | Phase 1 | Complete |
+| PAGE-05 | Phase 1 | Complete |
 | PAGE-06 | Phase 1 | Complete |
 | RESP-01 | Phase 1 | Pending |
 | RESP-02 | Phase 2 | Pending |
 | RESP-03 | Phase 2 | Pending |
 | CONT-01 | Phase 1 | Complete |
-| CONT-02 | Phase 1 | Pending |
+| CONT-02 | Phase 1 | Complete |
 | CONT-03 | Phase 1 | Complete |
 
 **Coverage:**
