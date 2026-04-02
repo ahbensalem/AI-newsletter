@@ -9,11 +9,12 @@ export default function CategoryPill({ categoryId }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[13px] font-extrabold",
+        "inline-flex items-center rounded-full text-xs font-semibold uppercase tracking-wide",
         cat.pill
       )}
+      style={{ gap: "6px", padding: "4px 10px" }}
     >
-      <span className={cn("w-1.5 h-1.5 rounded-full", cat.dot)} />
+      <span className={cn("rounded-full", cat.dot)} style={{ width: "6px", height: "6px" }} />
       {cat.label}
     </span>
   );
