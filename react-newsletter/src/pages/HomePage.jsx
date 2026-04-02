@@ -1,161 +1,176 @@
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowRight, ChevronRight, Mail } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronRight } from "lucide-react";
 import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
 import ArticleCard from "../components/article/ArticleCard";
+import ArticleModal from "../components/article/ArticleModal";
 import CategoryPill from "../components/article/CategoryPill";
+import { useArticleModal } from "../hooks/useArticleModal";
 import { latestEdition } from "../data";
 
 /* ═══════════════ HeroSection ═══════════════ */
-function HeroSection() {
+function HeroSection({ onOpenArticle }) {
   const featured = latestEdition.articles.find(a => a.featured);
   const secondary = latestEdition.articles.filter(a => !a.featured).slice(0, 2);
 
   return (
-    <section className="bg-page-bg py-[100px]">
-      <div className="max-w-[1240px] mx-auto px-6">
-        {/* Featured overlay card */}
-        {featured && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+    <section className="hero-glow" style={{ paddingTop: "40px", paddingBottom: "56px" }} aria-label="Featured articles">
+      <div className="w-full relative z-10" style={{ paddingLeft: "24px", paddingRight: "24px" }}>
+        {/* Edition header */}
+        <motion.div
+          style={{ marginBottom: "56px", textAlign: "center" }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <span className="inline-block text-xs font-semibold uppercase tracking-wide text-accent" style={{ marginBottom: "16px" }}>
+            Issue #{latestEdition.issue} &middot; {latestEdition.articles.length} articles
+          </span>
+          <h1
+            className="font-bold text-text leading-none tracking-tight"
+            style={{ fontSize: "clamp(3rem, 6vw, 5.5rem)" }}
           >
-            <Link
-              to={`/edition/${latestEdition.slug}`}
-              className="block relative rounded-3xl overflow-hidden min-h-[400px] lg:min-h-[500px] group"
-            >
-              <img
-                src={featured.image}
-                alt={featured.title}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-8 lg:p-12 z-10">
-                <CategoryPill categoryId={featured.category} />
-                <h2 className="text-white text-[28px] lg:text-[40px] font-extrabold leading-tight mt-3 max-w-3xl">
-                  {featured.title}
-                </h2>
-                <p className="text-white/80 text-[18px] mt-3 max-w-xl leading-relaxed">
-                  {featured.excerpt}
-                </p>
-                <span className="text-accent text-[13px] font-extrabold flex items-center gap-1 mt-4">
-                  Read Now <ChevronRight size={14} />
-                </span>
-              </div>
-            </Link>
-          </motion.div>
-        )}
+            {latestEdition.month}
+            <span className="text-text-3" style={{ marginLeft: "12px" }}>{latestEdition.year}</span>
+          </h1>
+          <div className="flex justify-center" style={{ marginTop: "24px" }}>
+            <div style={{ width: "80px", height: "2px", background: "linear-gradient(90deg, transparent, var(--color-accent), transparent)" }} />
+          </div>
+        </motion.div>
 
-        {/* Two secondary cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8">
-          {secondary.map((article, i) => (
+        <div className="grid grid-cols-1 lg:grid-cols-3" style={{ gap: "20px" }}>
+          {/* Featured overlay card */}
+          {featured && (
             <motion.div
-              key={article.id}
-              initial={{ opacity: 0, y: 16 }}
+              className="lg:col-span-2"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
+              transition={{ duration: 0.5 }}
             >
-              <Link
-                to={`/edition/${latestEdition.slug}#${article.id}`}
-                className="block relative rounded-3xl overflow-hidden h-[260px] lg:h-[300px] group"
+              <div
+                onClick={() => onOpenArticle(featured.id)}
+                role="button"
+                tabIndex={0}
+                aria-label={`Read article: ${featured.title}`}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpenArticle(featured.id); } }}
+                className="block relative rounded-xl overflow-hidden h-[360px] sm:h-[440px] lg:h-[500px] group cursor-pointer border border-border hover:border-accent/30 transition-all duration-300 hover-glow-lg focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-page-bg outline-none"
               >
                 <img
-                  src={article.image}
-                  alt={article.title}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-600"
+                  src={featured.image}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/85 via-stone-900/30 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-6 z-10">
-                  <CategoryPill categoryId={article.category} />
-                  <h3 className="text-white text-[20px] font-extrabold leading-tight mt-3 line-clamp-2">
-                    {article.title}
-                  </h3>
-                  <span className="text-accent text-[13px] font-extrabold flex items-center gap-1 mt-3">
-                    Read Now <ChevronRight size={14} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 z-10" style={{ padding: "32px", paddingBottom: "40px", maxWidth: "42rem" }}>
+                  <CategoryPill categoryId={featured.category} />
+                  <h2
+                    className="text-white font-semibold leading-[1.35] line-clamp-3 drop-shadow-lg"
+                    style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", marginTop: "16px" }}
+                  >
+                    {featured.title}
+                  </h2>
+                  <p className="text-white/70 text-base leading-relaxed line-clamp-3" style={{ marginTop: "16px", maxWidth: "32rem" }}>
+                    {featured.excerpt}
+                  </p>
+                  <span className="inline-flex items-center text-accent text-sm font-semibold group-hover:gap-3 transition-all duration-300" style={{ gap: "6px", marginTop: "24px" }} aria-hidden="true">
+                    Read article <ChevronRight size={14} />
                   </span>
                 </div>
-              </Link>
+              </div>
             </motion.div>
-          ))}
+          )}
+
+          {/* Secondary cards */}
+          <div className="flex flex-col sm:flex-row lg:flex-col" style={{ gap: "20px" }}>
+            {secondary.map((article, i) => (
+              <motion.div
+                key={article.id}
+                className="flex-1"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 + i * 0.12 }}
+              >
+                <div
+                  onClick={() => onOpenArticle(article.id)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Read article: ${article.title}`}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpenArticle(article.id); } }}
+                  className="block relative rounded-xl overflow-hidden h-[220px] lg:h-full lg:min-h-[238px] group cursor-pointer border border-border hover:border-accent/30 transition-all duration-300 hover-glow focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-page-bg outline-none"
+                >
+                  {article.image ? (
+                    <img
+                      src={article.image}
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-600 ease-out"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-br from-card-hover to-card-bg" aria-hidden="true" />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
+                  <div className="absolute inset-0 z-10 flex flex-col justify-end" style={{ padding: "32px", paddingBottom: "36px" }}>
+                    <CategoryPill categoryId={article.category} />
+                    <h3 className="text-white text-xl font-semibold leading-[1.35] line-clamp-2 drop-shadow-md" style={{ marginTop: "16px" }}>
+                      {article.title}
+                    </h3>
+                    <p className="text-white/60 text-sm leading-relaxed line-clamp-2" style={{ marginTop: "12px" }}>
+                      {article.excerpt}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-/* ═══════════════ RecentArticlesGrid ═══════════════ */
-function RecentArticlesGrid() {
-  const recentArticles = latestEdition.articles.filter(a => !a.featured).slice(0, 6);
+/* ═══════════════ ArticlesGrid ═══════════════ */
+function ArticlesGrid({ onOpenArticle }) {
+  const articles = latestEdition.articles.filter(a => !a.featured);
 
   return (
-    <section className="bg-section-alt py-[100px]">
-      <div className="max-w-[1240px] mx-auto px-6">
-        <h2 className="text-[24px] font-extrabold text-text">Latest Stories</h2>
-        <p className="text-[18px] text-text-2 mt-2">
-          The most important AI developments from this month's edition.
-        </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-          {recentArticles.map((article, i) => (
-            <motion.div
-              key={article.id}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-            >
-              <ArticleCard article={article} editionSlug={latestEdition.slug} />
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="mt-8">
-          <Link
-            to={`/edition/${latestEdition.slug}`}
-            className="text-accent font-extrabold text-[13px] flex items-center gap-1 hover:gap-2 transition-all"
-          >
-            View all articles <ArrowRight size={14} />
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ═══════════════ NewsletterSignup ═══════════════ */
-function NewsletterSignup() {
-  return (
-    <section className="bg-page-bg py-[100px]">
-      <div className="max-w-[600px] mx-auto px-6 text-center">
+    <section className="section-glow bg-section-alt" style={{ paddingTop: "80px", paddingBottom: "80px" }} aria-label="All articles">
+      <div className="w-full" style={{ paddingLeft: "24px", paddingRight: "24px" }}>
         <motion.div
+          style={{ marginBottom: "56px", textAlign: "center" }}
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.5 }}
         >
-          <Mail size={40} className="text-accent mx-auto" />
-          <h2 className="text-[24px] font-extrabold text-text mt-6">
-            Stay ahead of the curve
+          <span className="inline-block text-xs font-semibold uppercase tracking-wide text-accent" style={{ marginBottom: "16px" }}>
+            This month
+          </span>
+          <h2
+            className="font-bold text-text tracking-tight"
+            style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+          >
+            Latest Stories
           </h2>
-          <p className="text-[18px] text-text-2 mt-3 leading-relaxed">
-            One email per month. No spam. The most important AI developments, curated for builders and explorers.
-          </p>
-          <form className="flex gap-3 mt-8 max-w-md mx-auto" onSubmit={e => e.preventDefault()}>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 rounded-xl border border-border bg-card-bg px-4 py-3 text-text placeholder:text-text-3 focus:outline-none focus:border-accent/50 transition-colors"
-            />
-            <button
-              type="submit"
-              className="bg-accent text-white font-extrabold text-[13px] rounded-xl px-6 py-3 hover:bg-accent/90 transition-colors cursor-pointer border-none whitespace-nowrap"
-            >
-              Subscribe Free
-            </button>
-          </form>
         </motion.div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: "24px" }}>
+          {articles.map((article, i) => {
+            const isWide = i === 0 || i === 5;
+            return (
+              <motion.div
+                key={article.id}
+                className={isWide ? "sm:col-span-2" : ""}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: Math.min(i * 0.06, 0.3) }}
+              >
+                <ArticleCard article={article} onOpenArticle={onOpenArticle} wide={isWide} />
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
@@ -163,13 +178,21 @@ function NewsletterSignup() {
 
 /* ═══════════════ Page ═══════════════ */
 export default function HomePage() {
+  const { selectedArticle, openArticle, closeArticle } = useArticleModal(latestEdition.articles);
+
   return (
     <div className="min-h-screen bg-page-bg">
       <Navbar />
-      <HeroSection />
-      <RecentArticlesGrid />
-      <NewsletterSignup />
-      <Footer />
+      <main id="main-content">
+        <HeroSection onOpenArticle={openArticle} />
+        <ArticlesGrid onOpenArticle={openArticle} />
+      </main>
+
+      <AnimatePresence>
+        {selectedArticle && (
+          <ArticleModal article={selectedArticle} onClose={closeArticle} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
