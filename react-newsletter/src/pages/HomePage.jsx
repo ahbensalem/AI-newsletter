@@ -21,7 +21,7 @@ function HeroSection({ onOpenArticle }) {
           style={{ marginBottom: "56px", textAlign: "center" }}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
         >
           <span className="inline-block text-xs font-semibold uppercase tracking-wide text-accent" style={{ marginBottom: "16px" }}>
             Issue #{latestEdition.issue} &middot; {latestEdition.articles.length} articles
@@ -33,9 +33,15 @@ function HeroSection({ onOpenArticle }) {
             {latestEdition.month}
             <span className="text-text-3" style={{ marginLeft: "12px" }}>{latestEdition.year}</span>
           </h1>
-          <div className="flex justify-center" style={{ marginTop: "24px" }}>
+          <motion.div
+            className="flex justify-center"
+            style={{ marginTop: "24px" }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 1, 0.5, 1] }}
+          >
             <div style={{ width: "80px", height: "2px", background: "linear-gradient(90deg, transparent, var(--color-accent), transparent)" }} />
-          </div>
+          </motion.div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3" style={{ gap: "20px" }}>
@@ -43,9 +49,10 @@ function HeroSection({ onOpenArticle }) {
           {featured && (
             <motion.div
               className="lg:col-span-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, scale: 0.96, y: 24 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+              whileTap={{ scale: 0.985 }}
             >
               <div
                 onClick={() => onOpenArticle(featured.id)}
@@ -53,16 +60,22 @@ function HeroSection({ onOpenArticle }) {
                 tabIndex={0}
                 aria-label={`Read article: ${featured.title}`}
                 onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpenArticle(featured.id); } }}
-                className="block relative rounded-xl overflow-hidden h-[360px] sm:h-[440px] lg:h-[500px] group cursor-pointer border border-border hover:border-accent/30 transition-all duration-300 hover-glow-lg focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-page-bg outline-none"
+                className="block relative rounded-xl overflow-hidden h-[360px] sm:h-[440px] lg:h-[500px] group cursor-pointer border border-border hover:border-accent/30 transition-[border-color,box-shadow] duration-300 hover-glow-lg focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-page-bg outline-none"
               >
                 <img
                   src={assetUrl(featured.image)}
                   alt=""
                   aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                <div className="absolute bottom-0 left-0 z-10" style={{ padding: "32px", paddingBottom: "40px", maxWidth: "42rem" }}>
+                <motion.div
+                  className="absolute bottom-0 left-0 z-10"
+                  style={{ padding: "32px", paddingBottom: "40px", maxWidth: "42rem" }}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.25, ease: [0.25, 1, 0.5, 1] }}
+                >
                   <CategoryPill categoryId={featured.category} />
                   <h2
                     className="text-white font-semibold leading-[1.35] line-clamp-3 drop-shadow-lg"
@@ -76,7 +89,7 @@ function HeroSection({ onOpenArticle }) {
                   <span className="inline-flex items-center text-accent text-sm font-semibold group-hover:gap-3 transition-all duration-300" style={{ gap: "6px", marginTop: "24px" }} aria-hidden="true">
                     Read article <ChevronRight size={14} />
                   </span>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           )}
@@ -87,9 +100,11 @@ function HeroSection({ onOpenArticle }) {
               <motion.div
                 key={article.id}
                 className="flex-1"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.2 + i * 0.12 }}
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.15, ease: [0.25, 1, 0.5, 1] }}
+                whileHover={{ y: -4 }}
+                whileTap={{ scale: 0.975 }}
               >
                 <div
                   onClick={() => onOpenArticle(article.id)}
@@ -97,7 +112,7 @@ function HeroSection({ onOpenArticle }) {
                   tabIndex={0}
                   aria-label={`Read article: ${article.title}`}
                   onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpenArticle(article.id); } }}
-                  className="block relative rounded-xl overflow-hidden h-[220px] lg:h-full lg:min-h-[238px] group cursor-pointer border border-border hover:border-accent/30 transition-all duration-300 hover-glow focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-page-bg outline-none"
+                  className="block relative rounded-xl overflow-hidden h-[220px] lg:h-full lg:min-h-[238px] group cursor-pointer border border-border hover:border-accent/30 transition-[border-color,box-shadow] duration-300 hover-glow focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-page-bg outline-none"
                 >
                   {article.image ? (
                     <img
@@ -105,7 +120,7 @@ function HeroSection({ onOpenArticle }) {
                       alt=""
                       aria-hidden="true"
                       loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-600 ease-out"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-600 ease-[cubic-bezier(0.25,1,0.5,1)]"
                     />
                   ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-card-hover to-card-bg" aria-hidden="true" />
