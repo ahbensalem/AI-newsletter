@@ -2,8 +2,8 @@
 .planning/
 .claude/
 
-# Screenshots
-*.png
+# Screenshots (root only)
+/*.png
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

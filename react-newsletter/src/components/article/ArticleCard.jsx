@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import CategoryPill from "./CategoryPill";
+import { assetUrl } from "../../utils/assetUrl";
 
 export default function ArticleCard({ article, onOpenArticle, wide = false }) {
   const shared = "rounded-xl bg-card-bg overflow-hidden group h-full hover:bg-card-hover transition-all duration-300 cursor-pointer border border-border hover:border-accent/30 hover-glow active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-page-bg outline-none";
@@ -20,7 +21,7 @@ export default function ArticleCard({ article, onOpenArticle, wide = false }) {
       {article.image ? (
         <div className={wide ? "sm:w-[45%] sm:min-h-[260px] aspect-[16/10] sm:aspect-auto overflow-hidden relative shrink-0" : "aspect-[16/10] overflow-hidden relative"}>
           <img
-            src={article.image}
+            src={assetUrl(article.image)}
             alt=""
             aria-hidden="true"
             loading="lazy"

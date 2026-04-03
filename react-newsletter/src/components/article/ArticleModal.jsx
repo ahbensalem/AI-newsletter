@@ -2,6 +2,7 @@ import { useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { X, Clock, ExternalLink } from "lucide-react";
 import CategoryPill from "./CategoryPill";
+import { assetUrl } from "../../utils/assetUrl";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
@@ -93,7 +94,7 @@ export default function ArticleModal({ article, onClose }) {
           {article.image && (
             <div className="w-full aspect-video overflow-hidden">
               <img
-                src={article.image}
+                src={assetUrl(article.image)}
                 alt=""
                 className="w-full h-full object-cover"
               />
@@ -143,7 +144,7 @@ export default function ArticleModal({ article, onClose }) {
                     <figure key={i}>
                       <div className="rounded-lg overflow-hidden border border-border">
                         <img
-                          src={src}
+                          src={assetUrl(src)}
                           alt={article.galleryTitles?.[i] || ""}
                           loading="lazy"
                           className="w-full object-cover hover:scale-105 transition-transform duration-500"

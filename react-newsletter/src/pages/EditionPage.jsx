@@ -8,6 +8,7 @@ import ArticleCard from "../components/article/ArticleCard";
 import ArticleModal from "../components/article/ArticleModal";
 import CategoryPill from "../components/article/CategoryPill";
 import { useArticleModal } from "../hooks/useArticleModal";
+import { assetUrl } from "../utils/assetUrl";
 
 export default function EditionPage() {
   const { slug } = useParams();
@@ -98,7 +99,7 @@ function EditionContent({ edition }) {
                 >
                   {featured.image && (
                     <img
-                      src={featured.image}
+                      src={assetUrl(featured.image)}
                       alt=""
                       aria-hidden="true"
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"

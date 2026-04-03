@@ -6,6 +6,7 @@ import ArticleModal from "../components/article/ArticleModal";
 import CategoryPill from "../components/article/CategoryPill";
 import { useArticleModal } from "../hooks/useArticleModal";
 import { latestEdition } from "../data";
+import { assetUrl } from "../utils/assetUrl";
 
 /* ═══════════════ HeroSection ═══════════════ */
 function HeroSection({ onOpenArticle }) {
@@ -55,7 +56,7 @@ function HeroSection({ onOpenArticle }) {
                 className="block relative rounded-xl overflow-hidden h-[360px] sm:h-[440px] lg:h-[500px] group cursor-pointer border border-border hover:border-accent/30 transition-all duration-300 hover-glow-lg focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-page-bg outline-none"
               >
                 <img
-                  src={featured.image}
+                  src={assetUrl(featured.image)}
                   alt=""
                   aria-hidden="true"
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
@@ -100,7 +101,7 @@ function HeroSection({ onOpenArticle }) {
                 >
                   {article.image ? (
                     <img
-                      src={article.image}
+                      src={assetUrl(article.image)}
                       alt=""
                       aria-hidden="true"
                       loading="lazy"

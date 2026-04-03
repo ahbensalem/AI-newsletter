@@ -11,7 +11,7 @@ export default {
   month: "January",
   year: "2026",
   issue: "01",
-  coverImage: "/molthub.png",
+  coverImage: "/editions/january-2026/molthub.png",
   articles: [
     {
       id: "molthub",
@@ -19,7 +19,7 @@ export default {
       featured: true,
       title: "MoltHub: The Internet's First Platform Built for AI Agents",
       excerpt: "A new platform emerges where AI agents — not humans — are the primary users. MoltHub hosts computational content like attention matrices and gradient flows for autonomous systems with 1B+ parameters.",
-      image: "/molthub.png",
+      image: "/editions/january-2026/molthub.png",
       readTime: "5 min",
       date: "Jan 15, 2026",
       body: [
@@ -34,7 +34,7 @@ export default {
       category: "robotics",
       title: "NVIDIA GR00T-N1.6 — Physical AI Takes a Giant Leap",
       excerpt: "The GR00T-N1.6-3B model enables robots to perceive environments, plan actions, and execute complex physical tasks with unprecedented fluidity.",
-      image: "/batman4.jpg",
+      image: "/editions/january-2026/batman4.jpg",
       readTime: "4 min",
       date: "Jan 12, 2026",
       body: [
@@ -69,7 +69,7 @@ export default {
       category: "tools",
       title: "Claude Code vs Cursor: Why Not Both?",
       excerpt: "Both Claude Code and Cursor bring unique strengths to the developer's toolkit. Why limit yourself when you can leverage the best of both worlds?",
-      image: "/image.png",
+      image: "/editions/january-2026/image.png",
       readTime: "4 min",
       date: "Jan 14, 2026",
       body: [
@@ -86,10 +86,10 @@ export default {
       category: "creative",
       title: "Luma Photon — The Future of AI Image Generation",
       excerpt: "Luma Labs' Photon model delivers ultra-high quality visuals at 10x lower cost with character consistency and complex prompt understanding.",
-      image: "/batman-1.jpg",
+      image: "/editions/january-2026/batman-1.jpg",
       readTime: "4 min",
       date: "Jan 18, 2026",
-      gallery: ["/batman-1.jpg", "/batman-2.jpg", "/batman-3.jpg"],
+      gallery: ["/editions/january-2026/batman-1.jpg", "/editions/january-2026/batman-2.jpg", "/editions/january-2026/batman-3.jpg"],
       galleryTitles: ["Dawn in the Medina", "Guardian of the Souk", "Twilight Sentinel"],
       body: [
         "Luma Labs' advanced Photon model delivers ultra-high quality visuals at much lower cost and higher speed than previous generation tools. It achieves this through a new architecture that is up to 10x more cost-efficient while maintaining exceptional visual fidelity.",
@@ -139,7 +139,7 @@ export default {
       category: "tools",
       title: "Claude-Mem: Persistent Memory Across Conversations",
       excerpt: "A powerful memory management system for Claude that enables persistent context across conversations. Perfect for long-running projects.",
-      image: "/claude-mem.png",
+      image: "/editions/january-2026/claude-mem.png",
       readTime: "3 min",
       date: "Jan 16, 2026",
       body: [

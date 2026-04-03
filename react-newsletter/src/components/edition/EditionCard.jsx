@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen, Newspaper } from "lucide-react";
+import { assetUrl } from "../../utils/assetUrl";
 
 export default function EditionCard({ edition }) {
   return (
@@ -18,7 +19,7 @@ export default function EditionCard({ edition }) {
         {edition.coverImage ? (
           <div className="aspect-[16/9] overflow-hidden relative">
             <img
-              src={edition.coverImage}
+              src={assetUrl(edition.coverImage)}
               alt=""
               aria-hidden="true"
               loading="lazy"
