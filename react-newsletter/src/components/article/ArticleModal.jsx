@@ -92,11 +92,12 @@ export default function ArticleModal({ article, onClose }) {
 
           {/* Hero image */}
           {article.image && (
-            <div className="w-full aspect-video overflow-hidden">
+            <div className="w-full overflow-hidden" style={{ maxHeight: "480px" }}>
               <img
                 src={assetUrl(article.image)}
                 alt=""
-                className="w-full h-full object-cover"
+                className="w-full object-contain"
+                style={{ maxHeight: "480px" }}
               />
             </div>
           )}
