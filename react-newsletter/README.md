@@ -1,16 +1,90 @@
-# React + Vite
+# The Gradient — React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The frontend for **The Gradient**, a monthly AI newsletter. Built with React 19, Vite, and Tailwind CSS 4.
 
-Currently, two official plugins are available:
+## Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+cd react-newsletter
+npm install
+npm run dev
+```
 
-## React Compiler
+Open `http://localhost:5173`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Adding a New Monthly Edition
 
-## Expanding the ESLint configuration
+### 1. Create the edition file
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Copy the template and rename it:
+
+```bash
+cp src/data/editions/_template.js src/data/editions/february-2026.js
+```
+
+Edit the file — fill in the edition metadata and articles. The template has inline comments explaining every field.
+
+### 2. Add images
+
+Create a folder for the edition's images:
+
+```bash
+mkdir -p public/editions/february-2026
+```
+
+Drop your article images there. Reference them in the data file as:
+
+```js
+image: "/editions/february-2026/my-image.jpg"
+```
+
+Use `null` for articles without an image.
+
+### 3. Register the edition
+
+Open `src/data/index.js` and add the import:
+
+```js
+import february2026 from "./editions/february-2026";
+import january2026, { categories as jan2026Categories } from "./editions/january-2026";
+
+export const allEditions = [february2026, january2026]; // newest first
+export const latestEdition = allEditions[0];
+```
+
+The first entry in `allEditions` becomes the homepage edition.
+
+### Available Categories
+
+| ID | Label | Color |
+|----|-------|-------|
+| `infrastructure` | Infrastructure | amber |
+| `robotics` | Robotics | cyan |
+| `tools` | Dev Tools | violet |
+| `creative` | Creative AI | pink |
+| `industry` | Industry | green |
+
+### Article Fields
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `id` | Yes | Unique URL-safe identifier |
+| `category` | Yes | One of the category IDs above |
+| `featured` | No | Set `true` on exactly one article per edition |
+| `title` | Yes | Article headline |
+| `excerpt` | Yes | 1-2 sentence summary for cards |
+| `image` | No | Path to image in `public/editions/` or `null` |
+| `readTime` | Yes | e.g. `"4 min"` |
+| `date` | Yes | Display date, e.g. `"Feb 10, 2026"` |
+| `body` | Yes | Array of paragraph strings |
+| `gallery` | No | Array of image paths |
+| `galleryTitles` | No | Array of captions matching gallery |
+| `sources` | No | Array of `{ name, url }` objects |
+
+## Build & Deploy
+
+```bash
+npm run build
+```
+
+Output goes to `dist/`. Deployed automatically to GitHub Pages on push to `main`.
