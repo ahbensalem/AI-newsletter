@@ -2,6 +2,7 @@ import { useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { X, Clock, ExternalLink } from "lucide-react";
 import CategoryPill from "./CategoryPill";
+import LabelBadge from "./LabelBadge";
 import { assetUrl } from "../../utils/assetUrl";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
@@ -114,6 +115,9 @@ export default function ArticleModal({ article, onClose }) {
               {article.date && (
                 <span className="text-sm text-text-3">&middot; {article.date}</span>
               )}
+              {article.labels?.map((labelId) => (
+                <LabelBadge key={labelId} labelId={labelId} />
+              ))}
             </div>
 
             {/* Title */}

@@ -1,12 +1,14 @@
 import { useParams, Link } from "react-router-dom";
-import { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { ArrowLeft, ChevronRight } from "lucide-react";
 import { getEdition } from "../data";
 import Navbar from "../components/layout/Navbar";
 import ArticleCard from "../components/article/ArticleCard";
 import ArticleModal from "../components/article/ArticleModal";
 import CategoryPill from "../components/article/CategoryPill";
+import LabelBadge from "../components/article/LabelBadge";
+import FilterBar from "../components/filter/FilterBar";
 import { useArticleModal } from "../hooks/useArticleModal";
 import { assetUrl } from "../utils/assetUrl";
 
@@ -41,8 +43,11 @@ export default function EditionPage() {
 
 function EditionContent({ edition }) {
   const { selectedArticle, openArticle, closeArticle } = useArticleModal(edition.articles);
+  const [activeLabel, setActiveLabel] = useState(null);
   const featured = edition.articles.find(a => a.featured);
-  const rest = edition.articles.filter(a => !a.featured);
+  const filtered = activeLabel
+    ? edition.articles.filter(a => a.labels?.includes(activeLabel))
+    : edition.articles.filter(a => !a.featured);
 
   return (
     <div className="min-h-screen bg-page-bg">
@@ -80,9 +85,22 @@ function EditionContent({ edition }) {
           </div>
         </div>
 
-        {/* Featured hero card */}
-        {featured && (
-          <section className="hero-glow" style={{ paddingTop: "32px", paddingBottom: "24px" }} aria-label="Featured article">
+        {/* Filter bar */}
+        <FilterBar activeLabel={activeLabel} onFilterChange={setActiveLabel} />
+
+        {/* Featured hero card — only when no filter active */}
+        <AnimatePresence mode="wait">
+        {!activeLabel && featured && (
+          <motion.section
+            key="featured-hero"
+            className="hero-glow"
+            style={{ paddingTop: "32px", paddingBottom: "24px", overflow: "hidden" }}
+            aria-label="Featured article"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+          >
             <div className="w-full relative z-10" style={{ paddingLeft: "24px", paddingRight: "24px" }}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -107,7 +125,10 @@ function EditionContent({ edition }) {
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
                   <div className="absolute bottom-0 left-0 z-10" style={{ padding: "32px", paddingBottom: "40px", maxWidth: "42rem" }}>
-                    <CategoryPill categoryId={featured.category} />
+                    <div className="flex flex-wrap items-center" style={{ gap: "8px" }}>
+                      <CategoryPill categoryId={featured.category} />
+                      {featured.labels?.map((id) => <LabelBadge key={id} labelId={id} />)}
+                    </div>
                     <h2
                       className="text-white font-semibold leading-[1.35] line-clamp-3 drop-shadow-lg"
                       style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", marginTop: "16px" }}
@@ -124,29 +145,81 @@ function EditionContent({ edition }) {
                 </div>
               </motion.div>
             </div>
-          </section>
+          </motion.section>
         )}
+        </AnimatePresence>
 
         {/* Articles grid */}
         <section style={{ paddingTop: "48px", paddingBottom: "48px" }} aria-label="All articles">
           <div className="w-full" style={{ paddingLeft: "24px", paddingRight: "24px" }}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: "24px" }}>
-              {rest.map((article, i) => {
-                const isWide = i === 0 || i === 5;
-                return (
-                  <motion.div
-                    key={article.id}
-                    className={isWide ? "sm:col-span-2" : ""}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.45, delay: Math.min(i * 0.06, 0.3) }}
+            {/* Result count */}
+            <AnimatePresence mode="wait">
+              {activeLabel && (
+                <motion.p
+                  key="count"
+                  className="text-sm text-text-3 text-center"
+                  style={{ marginBottom: "24px" }}
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+                >
+                  {filtered.length} {filtered.length === 1 ? "article" : "articles"} found
+                </motion.p>
+              )}
+            </AnimatePresence>
+
+            <LayoutGroup>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: "24px" }}>
+                <AnimatePresence mode="popLayout">
+                  {filtered.map((article, i) => {
+                    const isWide = !activeLabel && (i === 0 || i === 5);
+                    return (
+                      <motion.div
+                        key={article.id}
+                        layout
+                        className={isWide ? "sm:col-span-2" : ""}
+                        initial={{ opacity: 0, scale: 0.96, y: 12 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.96 }}
+                        transition={{
+                          duration: 0.35,
+                          delay: i * 0.06,
+                          ease: [0.25, 1, 0.5, 1],
+                          layout: { type: "spring", stiffness: 300, damping: 30 },
+                        }}
+                      >
+                        <ArticleCard article={article} onOpenArticle={openArticle} wide={isWide} />
+                      </motion.div>
+                    );
+                  })}
+                </AnimatePresence>
+              </div>
+            </LayoutGroup>
+
+            <AnimatePresence mode="wait">
+              {filtered.length === 0 && (
+                <motion.div
+                  key="empty"
+                  className="text-center"
+                  style={{ paddingTop: "64px", paddingBottom: "64px" }}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 16 }}
+                  transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+                >
+                  <motion.span
+                    className="inline-block text-5xl text-text-3/30"
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    aria-hidden="true"
                   >
-                    <ArticleCard article={article} onOpenArticle={openArticle} wide={isWide} />
-                  </motion.div>
-                );
-              })}
-            </div>
+                    ?
+                  </motion.span>
+                  <p className="text-text-3" style={{ marginTop: "16px" }}>No articles match this filter.</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </section>
       </main>

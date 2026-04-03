@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import CategoryPill from "./CategoryPill";
+import LabelBadge from "./LabelBadge";
 import { assetUrl } from "../../utils/assetUrl";
 
 export default function ArticleCard({ article, onOpenArticle, wide = false }) {
@@ -49,6 +50,13 @@ export default function ArticleCard({ article, onOpenArticle, wide = false }) {
             <span className="text-xs text-text-3 shrink-0">{article.date}</span>
           )}
         </div>
+        {article.labels?.length > 0 && (
+          <div className="flex flex-wrap" style={{ gap: "6px", marginTop: "8px" }}>
+            {article.labels.map((labelId) => (
+              <LabelBadge key={labelId} labelId={labelId} />
+            ))}
+          </div>
+        )}
 
         {/* Title */}
         <h3 className={wide

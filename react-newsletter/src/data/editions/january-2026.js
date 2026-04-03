@@ -17,6 +17,7 @@ export default {
       id: "molthub",
       category: "infrastructure",
       featured: true,
+      labels: ["deep-dive", "research"],
       title: "MoltHub: The Internet's First Platform Built for AI Agents",
       excerpt: "A new platform emerges where AI agents — not humans — are the primary users. MoltHub hosts computational content like attention matrices and gradient flows for autonomous systems with 1B+ parameters.",
       image: "/editions/january-2026/molthub.png",
@@ -32,6 +33,7 @@ export default {
     {
       id: "nvidia-groot",
       category: "robotics",
+      labels: ["news", "research"],
       title: "NVIDIA GR00T-N1.6 — Physical AI Takes a Giant Leap",
       excerpt: "The GR00T-N1.6-3B model enables robots to perceive environments, plan actions, and execute complex physical tasks with unprecedented fluidity.",
       image: "/editions/january-2026/batman4.jpg",
@@ -50,6 +52,7 @@ export default {
     {
       id: "apple-gemini",
       category: "industry",
+      labels: ["news"],
       title: "Siri Gets a Brain Upgrade — Hello, Gemini!",
       excerpt: "Apple announces that the next generation of Siri will be powered by Google's Gemini language models, marking a new era of AI assistants.",
       image: null,
@@ -67,6 +70,7 @@ export default {
     {
       id: "claude-vs-cursor",
       category: "tools",
+      labels: ["tips", "deep-dive"],
       title: "Claude Code vs Cursor: Why Not Both?",
       excerpt: "Both Claude Code and Cursor bring unique strengths to the developer's toolkit. Why limit yourself when you can leverage the best of both worlds?",
       image: "/editions/january-2026/image.png",
@@ -84,6 +88,7 @@ export default {
     {
       id: "luma-photon",
       category: "creative",
+      labels: ["news", "tutorials"],
       title: "Luma Photon — The Future of AI Image Generation",
       excerpt: "Luma Labs' Photon model delivers ultra-high quality visuals at 10x lower cost with character consistency and complex prompt understanding.",
       image: "/editions/january-2026/batman-1.jpg",
@@ -103,6 +108,7 @@ export default {
     {
       id: "ai-healthcare",
       category: "industry",
+      labels: ["news"],
       title: "AI Enters Healthcare — Anthropic & OpenAI Make Their Move",
       excerpt: "Both Claude and ChatGPT expand into healthcare, promising AI-assisted diagnostics and medical literature synthesis.",
       image: null,
@@ -121,6 +127,7 @@ export default {
     {
       id: "openai-earbuds",
       category: "industry",
+      labels: ["news"],
       title: "OpenAI's First Device — AI-Powered Earbuds",
       excerpt: "OpenAI targets consumer hardware with AI earbuds featuring real-time translation and contextual information.",
       image: null,
@@ -137,6 +144,7 @@ export default {
     {
       id: "claude-mem",
       category: "tools",
+      labels: ["tips", "tutorials"],
       title: "Claude-Mem: Persistent Memory Across Conversations",
       excerpt: "A powerful memory management system for Claude that enables persistent context across conversations. Perfect for long-running projects.",
       image: "/editions/january-2026/claude-mem.png",
@@ -153,6 +161,7 @@ export default {
     {
       id: "falcon-h1r",
       category: "infrastructure",
+      labels: ["news", "research"],
       title: "Falcon H1-R 7B Soars",
       excerpt: "TII releases Falcon H1-R 7B with novel attention mechanisms suited for resource-constrained deployment.",
       image: null,

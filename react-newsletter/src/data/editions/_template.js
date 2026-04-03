@@ -30,6 +30,14 @@
  *    "creative"        — Image gen, video, creative AI
  *    "industry"        — Healthcare, consumer tech, adoption
  *
+ *  LABEL IDs (pick one or more per article):
+ *    "news"        — Breaking news and announcements
+ *    "tips"        — Quick tips and recommendations
+ *    "tutorials"   — Step-by-step guides
+ *    "meeting-pv"  — Meeting PV content
+ *    "deep-dive"   — In-depth analysis
+ *    "research"    — Research papers and findings
+ *
  *  IMAGE PATHS:
  *    All images go in  public/editions/{slug}/
  *    Reference them as  "/editions/{slug}/filename.ext"
@@ -49,6 +57,7 @@ export default {
     {
       id: "unique-article-id",              // Required — URL-safe, unique across all editions
       category: "infrastructure",           // Required — one of the category IDs above
+      labels: ["news", "deep-dive"],        // Optional — one or more label IDs (see list above)
       featured: true,                       // Required — exactly ONE article per edition
       title: "Article Title Goes Here",     // Required
       excerpt: "A one or two sentence summary shown on cards.", // Required
@@ -82,6 +91,7 @@ export default {
     {
       id: "another-article-id",
       category: "tools",
+      labels: ["tips"],
       title: "Another Article Title",
       excerpt: "Short summary for the card view.",
       image: null,                          // No image — card shows a letter placeholder

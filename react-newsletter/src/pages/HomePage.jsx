@@ -1,9 +1,12 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import Navbar from "../components/layout/Navbar";
 import ArticleCard from "../components/article/ArticleCard";
 import ArticleModal from "../components/article/ArticleModal";
 import CategoryPill from "../components/article/CategoryPill";
+import LabelBadge from "../components/article/LabelBadge";
+import FilterBar from "../components/filter/FilterBar";
 import { useArticleModal } from "../hooks/useArticleModal";
 import { latestEdition } from "../data";
 import { assetUrl } from "../utils/assetUrl";
@@ -76,7 +79,10 @@ function HeroSection({ onOpenArticle }) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.25, ease: [0.25, 1, 0.5, 1] }}
                 >
-                  <CategoryPill categoryId={featured.category} />
+                  <div className="flex flex-wrap items-center" style={{ gap: "8px" }}>
+                    <CategoryPill categoryId={featured.category} />
+                    {featured.labels?.map((id) => <LabelBadge key={id} labelId={id} />)}
+                  </div>
                   <h2
                     className="text-white font-semibold leading-[1.35] line-clamp-3 drop-shadow-lg"
                     style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", marginTop: "16px" }}
@@ -127,7 +133,10 @@ function HeroSection({ onOpenArticle }) {
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
                   <div className="absolute inset-0 z-10 flex flex-col justify-end" style={{ padding: "32px", paddingBottom: "36px" }}>
-                    <CategoryPill categoryId={article.category} />
+                    <div className="flex flex-wrap items-center" style={{ gap: "8px" }}>
+                      <CategoryPill categoryId={article.category} />
+                      {article.labels?.map((id) => <LabelBadge key={id} labelId={id} />)}
+                    </div>
                     <h3 className="text-white text-xl font-semibold leading-[1.35] line-clamp-2 drop-shadow-md" style={{ marginTop: "16px" }}>
                       {article.title}
                     </h3>
@@ -146,8 +155,11 @@ function HeroSection({ onOpenArticle }) {
 }
 
 /* ═══════════════ ArticlesGrid ═══════════════ */
-function ArticlesGrid({ onOpenArticle }) {
-  const articles = latestEdition.articles.filter(a => !a.featured);
+function ArticlesGrid({ onOpenArticle, activeLabel }) {
+  const allArticles = latestEdition.articles.filter(a => !a.featured);
+  const articles = activeLabel
+    ? allArticles.filter(a => a.labels?.includes(activeLabel))
+    : allArticles;
 
   return (
     <section className="section-glow bg-section-alt" style={{ paddingTop: "80px", paddingBottom: "80px" }} aria-label="All articles">
@@ -170,23 +182,74 @@ function ArticlesGrid({ onOpenArticle }) {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: "24px" }}>
-          {articles.map((article, i) => {
-            const isWide = i === 0 || i === 5;
-            return (
-              <motion.div
-                key={article.id}
-                className={isWide ? "sm:col-span-2" : ""}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: Math.min(i * 0.06, 0.3) }}
+        {/* Result count */}
+        <AnimatePresence mode="wait">
+          {activeLabel && (
+            <motion.p
+              key="count"
+              className="text-sm text-text-3 text-center"
+              style={{ marginBottom: "24px" }}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+            >
+              {articles.length} {articles.length === 1 ? "article" : "articles"} found
+            </motion.p>
+          )}
+        </AnimatePresence>
+
+        <LayoutGroup>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: "24px" }}>
+            <AnimatePresence mode="popLayout">
+              {articles.map((article, i) => {
+                const isWide = !activeLabel && (i === 0 || i === 5);
+                return (
+                  <motion.div
+                    key={article.id}
+                    layout
+                    className={isWide ? "sm:col-span-2" : ""}
+                    initial={{ opacity: 0, scale: 0.96, y: 12 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{
+                      duration: 0.35,
+                      delay: i * 0.06,
+                      ease: [0.25, 1, 0.5, 1],
+                      layout: { type: "spring", stiffness: 300, damping: 30 },
+                    }}
+                  >
+                    <ArticleCard article={article} onOpenArticle={onOpenArticle} wide={isWide} />
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+        </LayoutGroup>
+
+        <AnimatePresence mode="wait">
+          {articles.length === 0 && (
+            <motion.div
+              key="empty"
+              className="text-center"
+              style={{ paddingTop: "64px", paddingBottom: "64px" }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 16 }}
+              transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+            >
+              <motion.span
+                className="inline-block text-5xl text-text-3/30"
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                aria-hidden="true"
               >
-                <ArticleCard article={article} onOpenArticle={onOpenArticle} wide={isWide} />
-              </motion.div>
-            );
-          })}
-        </div>
+                ?
+              </motion.span>
+              <p className="text-text-3" style={{ marginTop: "16px" }}>No articles match this filter.</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
@@ -195,13 +258,15 @@ function ArticlesGrid({ onOpenArticle }) {
 /* ═══════════════ Page ═══════════════ */
 export default function HomePage() {
   const { selectedArticle, openArticle, closeArticle } = useArticleModal(latestEdition.articles);
+  const [activeLabel, setActiveLabel] = useState(null);
 
   return (
     <div className="min-h-screen bg-page-bg">
       <Navbar />
       <main id="main-content">
         <HeroSection onOpenArticle={openArticle} />
-        <ArticlesGrid onOpenArticle={openArticle} />
+        <FilterBar activeLabel={activeLabel} onFilterChange={setActiveLabel} />
+        <ArticlesGrid onOpenArticle={openArticle} activeLabel={activeLabel} />
       </main>
 
       <AnimatePresence>

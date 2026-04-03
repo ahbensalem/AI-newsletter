@@ -36,6 +36,20 @@
   --color-emerald: #4ADE80;
   --color-emerald-soft: rgba(74,222,128,0.10);
 
+  /* Label colors — muted tones, distinct from category palette */
+  --color-label-news: #64748B;
+  --color-label-news-soft: rgba(100,116,139,0.12);
+  --color-label-tips: #2DD4BF;
+  --color-label-tips-soft: rgba(45,212,191,0.12);
+  --color-label-tutorials: #818CF8;
+  --color-label-tutorials-soft: rgba(129,140,248,0.12);
+  --color-label-meeting-pv: #F472B6;
+  --color-label-meeting-pv-soft: rgba(244,114,182,0.12);
+  --color-label-deep-dive: #FB923C;
+  --color-label-deep-dive-soft: rgba(251,146,60,0.12);
+  --color-label-research: #A3E635;
+  --color-label-research-soft: rgba(163,230,53,0.12);
+
   /* Typography */
   --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
 }
