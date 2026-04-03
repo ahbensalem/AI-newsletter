@@ -81,6 +81,20 @@ mkdir -p react-newsletter/public/editions/february-2026
 
 Fill in your articles, push, done.
 
+## Streamlit App (Original)
+
+The project started as a Python Streamlit app before being redesigned as a React SPA. The Streamlit version is still functional and can be run independently.
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+- **Requirements** — Python 3.11, Streamlit >= 1.31.0, Pillow >= 10.0.0
+- **Content** — Monthly editions stored as Python dicts in `content/` (e.g., `content/january_2026.py`)
+- **New editions** — Use `content/month_template.py` as a starting point
+- **Port** — Runs on `localhost:8501`
+
 ## Deployment
 
 Automatically deployed to **GitHub Pages** on every push to `main` via GitHub Actions.
